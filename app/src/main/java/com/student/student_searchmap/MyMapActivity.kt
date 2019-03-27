@@ -57,7 +57,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
             // Request location updates
             locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
         } catch (ex: SecurityException) {
-            Log.d("myTag", "Security Exception, no location available")
+            
         }
 
     }
@@ -95,7 +95,6 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
             Log.d("Location", location.latitude.toString())
             Log.d("Location", location.longitude.toString())
             var latlon: String = location.latitude.toString() + "," + location.longitude.toString()
-//            locationTextView.text = "${location.latitude} - ${location.longitude}"
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
 
             }

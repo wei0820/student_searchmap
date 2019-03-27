@@ -21,8 +21,9 @@ public class GoogleMapAPISerive {
     private static final String TAG = "GoogleMapAPISerive";
     static  RequestQueue queue;
     static  GetResponse getResponse;
-    public static  final  String  TYPE_RESTAURANT  = "restaurant";
-    public static  final  String  TYPE_PARK  = "park";
+    public static  final  String  TYPE_CARWASH  = "car_wash";
+    public static  final  String  TYPE_CARREPAIR  = "car_repair";
+    public static  final  String  TYPE_PARKING  = "parking";
     public static  final  String  TYPE_LATLON = "latlon";
     public static  final  String  TYPE  = "type";
     public static  final  String  TYPE_PLACEID = "place_id";

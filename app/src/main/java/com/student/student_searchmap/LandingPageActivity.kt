@@ -6,11 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -50,7 +48,6 @@ class LandingPageActivity : Activity() {
     fun changeColor(){
         val timer = Timer()
         timer.schedule(task, 1, 300)
-
     }
 
     var task: TimerTask = object : TimerTask() {

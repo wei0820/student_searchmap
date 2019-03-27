@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData;
 import com.student.student_searchmap.Data.GoogleResponseData;
 
-
 /**
  * Created by JackPan on 2018/5/26.
  */

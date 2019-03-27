@@ -19,8 +19,6 @@ class LandingPageActivity : Activity() {
     lateinit var  mTextView :TextView
     lateinit var    mRelativeLayout:RelativeLayout
     var mChange :Boolean = false
-    private lateinit var managePermissions: ManagePermissions
-
     private val MY_PERMISSIONS_REQUEST_LOCATION = 1
     val list = listOf<String>(
             Manifest.permission.ACCESS_FINE_LOCATION,

@@ -25,19 +25,35 @@ import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
 import com.student.student_searchmap.Data.GoogleResponseData
 
 class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
-        , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener, View.OnClickListener , GoogleMapAPISerive.GetResponse {
+        , LocationListener, GoogleMap.OnCameraMoveStartedListener, GoogleMap.OnCameraIdleListener, View.OnClickListener, GoogleMapAPISerive.GetResponse {
+
+
     override fun getData(googleResponseData: GoogleResponseData?) {
+        var icon: Int = R.drawable.ic_local_parking_black_24dp
         if (googleResponseData != null) {
             for (result in googleResponseData.results) {
-                if (result.vicinity==null){
+                if (result.vicinity == null) {
                     result.vicinity = "no address"
+                }
+                if (result.types.size != 0) {
+                    when (result.types[0]) {
+                        "" -> {
+
+                        }
+                        "" -> {
+
+                        }
+                        "" -> {
+
+                        }
+                    }
+
                 }
 
 
                 addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
                         result.name,
-                        result.vicinity,
-                        result.types)
+                        result.vicinity,icon)
 
             }
         }
@@ -48,15 +64,15 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     }
 
     override fun onClick(p0: View?) {
-        when(p0!!.id){
-            R.id.button_1->{
+        when (p0!!.id) {
+            R.id.button_1 -> {
 
 
             }
-            R.id.button_2 ->{
+            R.id.button_2 -> {
 
             }
-            R.id.button_3 ->{
+            R.id.button_3 -> {
 
             }
 
@@ -125,8 +141,8 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
      */
 
     // 在地圖加入指定位置與標題的標記
-    private fun addMarker(place: LatLng, title: String, context: String, array: Array<String>) {
-        var icon: BitmapDescriptor = BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)
+    private fun addMarker(place: LatLng, title: String, context: String, int: Int) {
+        var icon: BitmapDescriptor = BitmapDescriptorFactory.fromResource(int)
 
         val markerOptions = MarkerOptions()
         markerOptions.position(place)
@@ -136,6 +152,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
         mMap.addMarker(markerOptions)
     }
+
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -145,6 +162,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         mMap.setOnCameraMoveCanceledListener(this)
         mMap.setOnCameraIdleListener(this)
     }
+
     private val locationListener: LocationListener = object : LocationListener {
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
 
@@ -158,18 +176,18 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
         override fun onLocationChanged(location: Location) {
             var latlon: String = location.latitude.toString() + "," + location.longitude.toString()
-            GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING,this@MyMapActivity)
+            GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
 
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
 
-            }
-
-
         }
 
-        override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
-        override fun onProviderEnabled(provider: String) {}
-        override fun onProviderDisabled(provider: String) {}
+
+    }
+
+    override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+    override fun onProviderEnabled(provider: String) {}
+    override fun onProviderDisabled(provider: String) {}
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
 
@@ -180,6 +198,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
             }
         }
     }
+
     fun checkPermission() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {

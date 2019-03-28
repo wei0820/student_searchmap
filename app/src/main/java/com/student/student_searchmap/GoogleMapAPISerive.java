@@ -59,6 +59,7 @@ public class GoogleMapAPISerive {
                                         }
 
                                     }
+
                                 }
                             }
                         }
@@ -102,7 +103,6 @@ public class GoogleMapAPISerive {
                                 for (GoogleResponseData.Results results : googleResponseData.results) {
                                     Log.d(TAG, "onResponse: "+results.geometry.location.lat);
                                     Log.d(TAG, "onResponse: "+results.geometry.location.lng);
-
                                     if(results.photos!=null){
                                         for (GoogleResponseData.Results.Photos photo : results.photos) {
                                             Log.d(TAG, "photos: "+photo.photo_reference);
@@ -110,6 +110,7 @@ public class GoogleMapAPISerive {
                                         }
 
                                     }
+
                                 }
                             }
                         }

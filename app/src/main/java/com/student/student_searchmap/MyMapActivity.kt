@@ -37,13 +37,18 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
                 }
                 if (result.types.size != 0) {
                     when (result.types[0]) {
-                        "" -> {
+                        GoogleMapAPISerive.TYPE_PARKING -> {
+                            icon = R.drawable.ic_local_parking_black_24dp
 
                         }
-                        "" -> {
+                        GoogleMapAPISerive.TYPE_CARWASH -> {
+                            icon = R.drawable.ic_local_car_wash_black_24dp
+
 
                         }
-                        "" -> {
+                        GoogleMapAPISerive.TYPE_CARREPAIR -> {
+                            icon = R.drawable.ic_directions_car_black_24dp
+
 
                         }
                     }

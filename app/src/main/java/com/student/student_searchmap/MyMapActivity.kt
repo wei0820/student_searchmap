@@ -158,6 +158,8 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
         override fun onLocationChanged(location: Location) {
             var latlon: String = location.latitude.toString() + "," + location.longitude.toString()
+            GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, "22.666868,120.314892", GoogleMapAPISerive.TYPE_PARKING,this@MyMapActivity)
+
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
 
             }

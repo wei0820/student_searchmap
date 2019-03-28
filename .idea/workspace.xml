@@ -55,8 +55,8 @@
       <file leaf-file-name="MyMapActivity.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MyMapActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="243">
+              <caret line="160" column="52" selection-start-line="160" selection-start-column="31" selection-end-line="160" selection-end-column="52" />
               <folding>
                 <element signature="e#39#1044#0" expanded="true" />
               </folding>
@@ -3013,8 +3013,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MyMapActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="243">
+          <caret line="160" column="52" selection-start-line="160" selection-start-column="31" selection-end-line="160" selection-end-column="52" />
           <folding>
             <element signature="e#39#1044#0" expanded="true" />
           </folding>

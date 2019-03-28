@@ -71,13 +71,18 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     override fun onClick(p0: View?) {
         when (p0!!.id) {
             R.id.button_1 -> {
+                setToast("搜尋停車場")
 
 
             }
             R.id.button_2 -> {
+                setToast("搜尋洗車場")
+
 
             }
             R.id.button_3 -> {
+                setToast("搜尋保養廠")
+
 
             }
 
@@ -112,7 +117,14 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         checkPermission()
         initLayout()
     }
+    fun  setToast(s:String){
+        if (mMap!=null){
+            mMap.clear()
+        }
 
+        Toast.makeText(this@MyMapActivity,s,Toast.LENGTH_SHORT).show()
+
+    }
     @SuppressLint("ServiceCast")
     fun initLayout() {
         mButton = findViewById(R.id.button_1)

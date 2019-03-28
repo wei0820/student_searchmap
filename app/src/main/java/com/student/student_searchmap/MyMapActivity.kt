@@ -17,7 +17,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+
 class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
         , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener, View.OnClickListener {
     override fun onClick(p0: View?) {
@@ -96,6 +100,19 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    // 在地圖加入指定位置與標題的標記
+    private fun addMarker(place: LatLng, title: String, context: String, array: Array<String>) {
+        var icon: BitmapDescriptor = BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)
+
+        val markerOptions = MarkerOptions()
+        markerOptions.position(place)
+                .title(title)
+                .snippet(context)
+                .icon(icon)
+
+        mMap.addMarker(markerOptions)
+    }
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap

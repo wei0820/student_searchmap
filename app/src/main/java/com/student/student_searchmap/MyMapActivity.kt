@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -18,7 +19,23 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
-        , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener {
+        , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener, View.OnClickListener {
+    override fun onClick(p0: View?) {
+        when(p0!!.id){
+            R.id.button_1->{
+
+
+            }
+            R.id.button_2 ->{
+
+            }
+            R.id.button_3 ->{
+
+            }
+
+        }
+    }
+
     override fun onCameraMove() {
     }
 
@@ -37,6 +54,9 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     private lateinit var mMap: GoogleMap
     private var locationManager: LocationManager? = null
     val MY_PERMISSIONS_REQUEST_LOCATION = 100
+    lateinit var mButton: Button
+    lateinit var mButton2: Button
+    lateinit var mButton3: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +67,11 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
     @SuppressLint("ServiceCast")
     fun initLayout() {
+        mButton = findViewById(R.id.button_1)
+        mButton2 = findViewById(R.id.button_2)
+        mButton3 = findViewById(R.id.button_3)
+        mButton.setOnClickListener(this)
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
@@ -57,7 +82,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
             // Request location updates
             locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
         } catch (ex: SecurityException) {
-            
+
         }
 
     }
@@ -92,8 +117,6 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         }
 
         override fun onLocationChanged(location: Location) {
-            Log.d("Location", location.latitude.toString())
-            Log.d("Location", location.longitude.toString())
             var latlon: String = location.latitude.toString() + "," + location.longitude.toString()
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
 

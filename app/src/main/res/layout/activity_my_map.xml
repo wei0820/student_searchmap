@@ -19,12 +19,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/button_1"
             android:text="停車場"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             ></Button>
         <Button
+            android:id="@+id/button_2"
+
             android:text="保養廠"
 
             android:layout_weight="1"
@@ -32,6 +35,8 @@
             android:layout_width="match_parent"
             ></Button>
         <Button
+            android:id="@+id/button_3"
+
             android:text="洗車場"
             android:layout_weight="1"
             android:layout_height="match_parent"

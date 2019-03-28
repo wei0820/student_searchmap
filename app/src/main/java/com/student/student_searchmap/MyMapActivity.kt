@@ -25,7 +25,7 @@ import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
 import com.student.student_searchmap.Data.GoogleResponseData
 
 class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
-        , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener, View.OnClickListener ,, GoogleMapAPISerive.GetResponse {
+        , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener, View.OnClickListener , GoogleMapAPISerive.GetResponse {
     override fun getData(googleResponseData: GoogleResponseData?) {
         if (googleResponseData != null) {
             for (result in googleResponseData.results) {
@@ -158,7 +158,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
         override fun onLocationChanged(location: Location) {
             var latlon: String = location.latitude.toString() + "," + location.longitude.toString()
-            GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, "22.666868,120.314892", GoogleMapAPISerive.TYPE_PARKING,this@MyMapActivity)
+            GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING,this@MyMapActivity)
 
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
 

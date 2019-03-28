@@ -21,9 +21,32 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
+import com.student.student_searchmap.Data.GoogleResponseData
 
 class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
-        , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener, View.OnClickListener {
+        , LocationListener, GoogleMap.OnCameraMoveStartedListener,GoogleMap.OnCameraIdleListener, View.OnClickListener ,, GoogleMapAPISerive.GetResponse {
+    override fun getData(googleResponseData: GoogleResponseData?) {
+        if (googleResponseData != null) {
+            for (result in googleResponseData.results) {
+                if (result.vicinity==null){
+                    result.vicinity = "no address"
+                }
+
+
+                addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
+                        result.name,
+                        result.vicinity,
+                        result.types)
+
+            }
+        }
+    }
+
+
+    override fun getDetailData(googleMapPlaceDetailsData: GoogleMapPlaceDetailsData?) {
+    }
+
     override fun onClick(p0: View?) {
         when(p0!!.id){
             R.id.button_1->{

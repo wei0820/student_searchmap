@@ -32,7 +32,6 @@ public class GoogleMapAPISerive {
     public static  void setPlaceForRestaurant(final Context context,String latlon,String type,GetResponse Response){
         queue = Volley.newRequestQueue(context);
         getResponse = Response;
-//        latlon = "22.649959, 120.306139";
 
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latlon+"&radius=500&type="+type+"&key=AIzaSyDeRZ8FEeGk0G9leGjbs316tbFUZu45J3I";
         Log.d(TAG, "setPlaceForRestaurant: "+url);

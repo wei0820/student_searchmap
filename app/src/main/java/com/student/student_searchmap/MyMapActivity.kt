@@ -18,7 +18,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -75,24 +74,27 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
+
             R.id.button_1 -> {
-                setToast("搜尋停車場")
                 mMap.clear()
+
+                setToast("搜尋停車場")
 
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
 
             }
             R.id.button_2 -> {
-                setToast("搜尋保養廠")
                 mMap.clear()
+
+                setToast("搜尋保養廠")
 
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_CARREPAIR, this@MyMapActivity)
 
 
             }
             R.id.button_3 -> {
-                setToast("搜尋洗車場")
                 mMap.clear()
+                setToast("搜尋洗車場")
 
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_CARWASH, this@MyMapActivity)
 
@@ -103,18 +105,25 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     }
 
     override fun onCameraMove() {
+
     }
 
     override fun onCameraMoveCanceled() {
+
     }
 
     override fun onLocationChanged(p0: Location?) {
+
     }
 
     override fun onCameraMoveStarted(p0: Int) {
     }
 
     override fun onCameraIdle() {
+        val sydney = LatLng(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
+        latlon = mMap.cameraPosition.target.latitude.toString() + "," + mMap.cameraPosition.target.longitude.toString()
+        Log.d("Jack",latlon)
+
     }
 
     private lateinit var mMap: GoogleMap
@@ -204,8 +213,9 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         }
 
         override fun onLocationChanged(location: Location) {
-            latlon = location.latitude.toString() + "," + location.longitude.toString()
             if (mFistBoolean) {
+                latlon = location.latitude.toString() + "," + location.longitude.toString()
+
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
 
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))

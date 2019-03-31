@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -36,29 +37,33 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
                     result.vicinity = "no address"
                 }
                 if (result.types.size != 0) {
+
                     when (result.types[0]) {
                         GoogleMapAPISerive.TYPE_PARKING -> {
-                            icon = R.drawable.ic_local_parking_black_24dp
 
+                            addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
+                                    result.name,
+                                    result.vicinity,R.drawable.ic_park_car)
                         }
                         GoogleMapAPISerive.TYPE_CARWASH -> {
-                            icon = R.drawable.ic_local_car_wash_black_24dp
 
-
+                            addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
+                                    result.name,
+                                    result.vicinity,R.drawable.ic_wash_car)
                         }
                         GoogleMapAPISerive.TYPE_CARREPAIR -> {
-                            icon = R.drawable.ic_directions_car_black_24dp
-
+                            addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
+                                    result.name,
+                                    result.vicinity,R.drawable.ic_fix_car)
 
                         }
                     }
 
+
                 }
 
 
-                addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
-                        result.name,
-                        result.vicinity,icon)
+
 
             }
         }
@@ -72,16 +77,24 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         when (p0!!.id) {
             R.id.button_1 -> {
                 setToast("搜尋停車場")
+                mMap.clear()
 
+                GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
 
             }
             R.id.button_2 -> {
-                setToast("搜尋洗車場")
+                setToast("搜尋保養廠")
+                mMap.clear()
+
+                GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_CARREPAIR, this@MyMapActivity)
 
 
             }
             R.id.button_3 -> {
-                setToast("搜尋保養廠")
+                setToast("搜尋洗車場")
+                mMap.clear()
+
+                GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_CARWASH, this@MyMapActivity)
 
 
             }
@@ -110,6 +123,8 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     lateinit var mButton: Button
     lateinit var mButton2: Button
     lateinit var mButton3: Button
+    lateinit var latlon: String
+    var mFistBoolean : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,9 +133,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         initLayout()
     }
     fun  setToast(s:String){
-        if (mMap!=null){
-            mMap.clear()
-        }
+
 
         Toast.makeText(this@MyMapActivity,s,Toast.LENGTH_SHORT).show()
 
@@ -131,7 +144,8 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         mButton2 = findViewById(R.id.button_2)
         mButton3 = findViewById(R.id.button_3)
         mButton.setOnClickListener(this)
-
+        mButton2.setOnClickListener(this)
+        mButton3.setOnClickListener(this)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
@@ -159,13 +173,11 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
     // 在地圖加入指定位置與標題的標記
     private fun addMarker(place: LatLng, title: String, context: String, int: Int) {
-        var icon: BitmapDescriptor = BitmapDescriptorFactory.fromResource(int)
-
         val markerOptions = MarkerOptions()
         markerOptions.position(place)
                 .title(title)
                 .snippet(context)
-                .icon(icon)
+                .icon(BitmapDescriptorFactory.fromResource(int))
 
         mMap.addMarker(markerOptions)
     }
@@ -192,11 +204,13 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         }
 
         override fun onLocationChanged(location: Location) {
-            var latlon: String = location.latitude.toString() + "," + location.longitude.toString()
-            GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
+            latlon = location.latitude.toString() + "," + location.longitude.toString()
+            if (mFistBoolean) {
+                GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
 
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
-
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
+                mFistBoolean = false
+            }
         }
 
 
@@ -223,4 +237,6 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         }
 
     }
+
+
 }

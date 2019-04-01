@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+
+        >
+        <com.gcssloop.widget.RCRelativeLayout
+            android:padding="20dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:round_corner="40dp">
+
+            <!--任意View-->
+            <ImageView
+                android:id="@+id/reviewimg"
+                android:scaleType="centerCrop"
+                android:layout_width="90dp"
+                android:layout_height="90dp"/>
+            <TextView
+                android:id="@+id/reviewname"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#aaffffff"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:text="name"/>
+
+        </com.gcssloop.widget.RCRelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    >
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/reviewtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:text="1111"
+                        ></TextView>
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_below="@+id/reviewtext"
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/reviewtimetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:text="time"
+                        ></TextView>
+                    <RatingBar
+                        android:layout_marginTop="12dp"
+                        android:id="@+id/rating"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/reviewtimetext"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:stepSize="0.1" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+
+        </ScrollView>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

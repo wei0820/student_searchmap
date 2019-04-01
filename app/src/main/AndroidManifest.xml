@@ -49,13 +49,16 @@
             android:name=".LandingPageActivity"
             android:label="@string/title_activity_landing_page"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PlaceDeatilActivity"
+            android:label="@string/title_activity_place_deatil"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

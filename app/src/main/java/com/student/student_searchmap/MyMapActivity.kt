@@ -71,9 +71,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
 
     override fun getDetailData(googleMapPlaceDetailsData: GoogleMapPlaceDetailsData?) {
-        if (googleMapPlaceDetailsData!=null){
 
-        }
     }
 
 
@@ -82,17 +80,13 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
             R.id.button_1 -> {
                 mMap.clear()
-
                 setToast("搜尋停車場")
-
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
 
             }
             R.id.button_2 -> {
                 mMap.clear()
-
                 setToast("搜尋保養廠")
-
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_CARREPAIR, this@MyMapActivity)
 
 
@@ -100,7 +94,6 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
             R.id.button_3 -> {
                 mMap.clear()
                 setToast("搜尋洗車場")
-
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_CARWASH, this@MyMapActivity)
 
 
@@ -125,7 +118,6 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     }
 
     override fun onCameraIdle() {
-        val sydney = LatLng(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
         latlon = mMap.cameraPosition.target.latitude.toString() + "," + mMap.cameraPosition.target.longitude.toString()
 
     }
@@ -211,7 +203,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         marker.showInfoWindow()
         // 用吐司顯示註解
         Log.d("Jack",marker.tag.toString())
-        GoogleMapAPISerive.getPlaceDeatail(this@MyMapActivity,marker.tag.toString(),this)
+//        GoogleMapAPISerive.getPlaceDeatail(this@MyMapActivity,marker.tag.toString(),this)
 
 //        Log.d("Jack",marker.position.latitude.toString())
 //        Log.d("Jack",marker.position.longitude.toString())

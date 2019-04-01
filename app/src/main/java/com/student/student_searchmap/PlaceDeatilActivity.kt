@@ -7,12 +7,20 @@ import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
 import com.student.student_searchmap.Data.GoogleResponseData
 
 
-class PlaceDeatilActivity : AppCompatActivity() , GoogleMapAPISerive.GetResponse{
+class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse {
     override fun getData(googleResponseData: GoogleResponseData?) {
 
     }
 
     override fun getDetailData(googleMapPlaceDetailsData: GoogleMapPlaceDetailsData?) {
+        if (googleMapPlaceDetailsData != null) {
+            if (googleMapPlaceDetailsData.result != null) {
+
+                if (googleMapPlaceDetailsData.result.photos != null && googleMapPlaceDetailsData.result.photos.size != 0) {
+
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +28,17 @@ class PlaceDeatilActivity : AppCompatActivity() , GoogleMapAPISerive.GetResponse
         setContentView(R.layout.content_place_deatil)
         getid()
     }
-    fun getid(){
-      val id :String =   intent.extras.getString("id")
-        Log.d("Jack",id)
+
+    fun getid() {
+        val id: String = intent.extras.getString("id")
+        val url :String = intent.extras.getString("tag")
+        Log.d("PlaceDeatilActivity",id)
+        Log.d("PlaceDeatilActivity",url)
+
+
+        Log.d("PlaceDeatilActivity",GoogleMapAPISerive.getPhotos(this,url))
+
+//        GoogleMapAPISerive.getPlaceDeatail(this, id, this)
 
     }
 

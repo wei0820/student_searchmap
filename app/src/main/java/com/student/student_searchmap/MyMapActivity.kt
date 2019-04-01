@@ -32,30 +32,38 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
     override fun getData(googleResponseData: GoogleResponseData?) {
         var icon: Int = R.drawable.ic_local_parking_black_24dp
+        var  url:String  = ""
         if (googleResponseData != null) {
             for (result in googleResponseData.results) {
                 if (result.vicinity == null) {
                     result.vicinity = "no address"
                 }
+
+
                 if (result.types.size != 0) {
 
                     when (result.types[0]) {
                         GoogleMapAPISerive.TYPE_PARKING -> {
+                            if(result.photos!=null&&result.photos.size!=0){
+                                url = result.photos.get(0).photo_reference
+                            }
+
 
                             addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
                                     result.name,
-                                    result.vicinity,R.drawable.ic_park_car,result.place_id)
+                                    result.vicinity,R.drawable.ic_park_car,result.place_id,url)
                         }
                         GoogleMapAPISerive.TYPE_CARWASH -> {
 
                             addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
                                     result.name,
-                                    result.vicinity,R.drawable.ic_wash_car,result.place_id)
+                                    result.vicinity,R.drawable.ic_wash_car,result.place_id,url)
                         }
                         GoogleMapAPISerive.TYPE_CARREPAIR -> {
+
                             addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
                                     result.name,
-                                    result.vicinity,R.drawable.ic_fix_car,result.place_id)
+                                    result.vicinity,R.drawable.ic_fix_car,result.place_id,url)
 
                         }
                     }
@@ -178,7 +186,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
      */
 
     // 在地圖加入指定位置與標題的標記
-    private fun addMarker(place: LatLng, title: String, context: String, int: Int,id:String) {
+    private fun addMarker(place: LatLng, title: String, context: String, int: Int,id:String,tag:String) {
         val markerOptions = MarkerOptions()
         val marker :Marker
         markerOptions.position(place)
@@ -186,7 +194,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
                 .snippet(context)
                 .icon(BitmapDescriptorFactory.fromResource(int))
         marker =  mMap.addMarker(markerOptions)
-        marker.tag = id
+        marker.tag = id+","+tag
     }
 
     @SuppressLint("MissingPermission")
@@ -206,10 +214,17 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         // 用吐司顯示註解
         clickInt++
         if (clickInt>=2){
+
+            val id :String  = marker.tag.toString().split(",")[0]
+            val tag :String  = marker.tag.toString().split(",")[1]
+            Log.d("Jack",id)
+            Log.d("Jack",tag)
+
             val intent = Intent()
             val bundle = Bundle()
             intent.setClass(this,PlaceDeatilActivity::class.java)
-            bundle.putString("id",marker.tag.toString())
+            bundle.putString("id",id)
+            bundle.putString("tag",tag)
             intent.putExtras(bundle)
             startActivity(intent)
             clickInt = 0

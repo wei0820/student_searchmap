@@ -3,9 +3,17 @@ package com.student.student_searchmap
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log
+import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
+import com.student.student_searchmap.Data.GoogleResponseData
 
 
-class PlaceDeatilActivity : AppCompatActivity() {
+class PlaceDeatilActivity : AppCompatActivity() , GoogleMapAPISerive.GetResponse{
+    override fun getData(googleResponseData: GoogleResponseData?) {
+
+    }
+
+    override fun getDetailData(googleMapPlaceDetailsData: GoogleMapPlaceDetailsData?) {
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

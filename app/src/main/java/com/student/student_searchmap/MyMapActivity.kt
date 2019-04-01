@@ -20,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
 import com.student.student_searchmap.Data.GoogleResponseData
@@ -42,18 +43,18 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
                             addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
                                     result.name,
-                                    result.vicinity,R.drawable.ic_park_car)
+                                    result.vicinity,R.drawable.ic_park_car,result.place_id)
                         }
                         GoogleMapAPISerive.TYPE_CARWASH -> {
 
                             addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
                                     result.name,
-                                    result.vicinity,R.drawable.ic_wash_car)
+                                    result.vicinity,R.drawable.ic_wash_car,result.place_id)
                         }
                         GoogleMapAPISerive.TYPE_CARREPAIR -> {
                             addMarker(LatLng(result.geometry.location.lat, result.geometry.location.lng),
                                     result.name,
-                                    result.vicinity,R.drawable.ic_fix_car)
+                                    result.vicinity,R.drawable.ic_fix_car,result.place_id)
 
                         }
                     }
@@ -70,7 +71,11 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
 
 
     override fun getDetailData(googleMapPlaceDetailsData: GoogleMapPlaceDetailsData?) {
+        if (googleMapPlaceDetailsData!=null){
+
+        }
     }
+
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
@@ -122,7 +127,6 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     override fun onCameraIdle() {
         val sydney = LatLng(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
         latlon = mMap.cameraPosition.target.latitude.toString() + "," + mMap.cameraPosition.target.longitude.toString()
-        Log.d("Jack",latlon)
 
     }
 
@@ -181,14 +185,15 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
      */
 
     // 在地圖加入指定位置與標題的標記
-    private fun addMarker(place: LatLng, title: String, context: String, int: Int) {
+    private fun addMarker(place: LatLng, title: String, context: String, int: Int,id:String) {
         val markerOptions = MarkerOptions()
+        val marker :Marker
         markerOptions.position(place)
                 .title(title)
                 .snippet(context)
                 .icon(BitmapDescriptorFactory.fromResource(int))
-
-        mMap.addMarker(markerOptions)
+        marker =  mMap.addMarker(markerOptions)
+        marker.tag = id
     }
 
     @SuppressLint("MissingPermission")
@@ -199,6 +204,23 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         mMap.setOnCameraMoveListener(this)
         mMap.setOnCameraMoveCanceledListener(this)
         mMap.setOnCameraIdleListener(this)
+        mMap.setOnMarkerClickListener(gmapListener)
+
+    }
+    private val gmapListener = GoogleMap.OnMarkerClickListener { marker ->
+        marker.showInfoWindow()
+        // 用吐司顯示註解
+        Log.d("Jack",marker.tag.toString())
+        GoogleMapAPISerive.getPlaceDeatail(this@MyMapActivity,marker.tag.toString(),this)
+
+//        Log.d("Jack",marker.position.latitude.toString())
+//        Log.d("Jack",marker.position.longitude.toString())
+//        Log.d("Jack",Distance(mLat,mLon,marker.position.latitude,marker.position.longitude).toString())
+//        Toast.makeText(this@MapsActivity,
+//                "距離"+Distance(mLat,mLon,marker.position.latitude,marker.position.longitude)+
+//                        "公尺",Toast.LENGTH_SHORT).show()
+
+        true
     }
 
     private val locationListener: LocationListener = object : LocationListener {

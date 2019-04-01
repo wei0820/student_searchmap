@@ -212,24 +212,16 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     private val gmapListener = GoogleMap.OnMarkerClickListener { marker ->
         marker.showInfoWindow()
         // 用吐司顯示註解
-        clickInt++
-        if (clickInt>=2){
+        val id :String  = marker.tag.toString().split(",")[0]
+        val tag :String  = marker.tag.toString().split(",")[1]
 
-            val id :String  = marker.tag.toString().split(",")[0]
-            val tag :String  = marker.tag.toString().split(",")[1]
-            Log.d("Jack",id)
-            Log.d("Jack",tag)
-
-            val intent = Intent()
-            val bundle = Bundle()
-            intent.setClass(this,PlaceDeatilActivity::class.java)
-            bundle.putString("id",id)
-            bundle.putString("tag",tag)
-            intent.putExtras(bundle)
-            startActivity(intent)
-            clickInt = 0
-        }
-
+        val intent = Intent()
+        val bundle = Bundle()
+        intent.setClass(this,PlaceDeatilActivity::class.java)
+        bundle.putString("id",id)
+        bundle.putString("tag",tag)
+        intent.putExtras(bundle)
+        startActivity(intent)
 
 
 

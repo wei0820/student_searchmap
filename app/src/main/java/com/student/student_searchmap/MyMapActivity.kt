@@ -1,6 +1,7 @@
 package com.student.student_searchmap
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -199,10 +200,24 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         mMap.setOnMarkerClickListener(gmapListener)
 
     }
+    var clickInt :Int = 0
     private val gmapListener = GoogleMap.OnMarkerClickListener { marker ->
         marker.showInfoWindow()
         // 用吐司顯示註解
-        Log.d("Jack",marker.tag.toString())
+        clickInt++
+        if (clickInt>=2){
+            val intent = Intent()
+            val bundle = Bundle()
+            intent.setClass(this,PlaceDeatilActivity::class.java)
+            bundle.putString("id",marker.tag.toString())
+            intent.putExtras(bundle)
+            startActivity(intent)
+            clickInt = 0
+        }
+
+
+
+
 //        GoogleMapAPISerive.getPlaceDeatail(this@MyMapActivity,marker.tag.toString(),this)
 
 //        Log.d("Jack",marker.position.latitude.toString())

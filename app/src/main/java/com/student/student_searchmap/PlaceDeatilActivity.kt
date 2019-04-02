@@ -15,6 +15,9 @@ import android.widget.TextView
 import com.hendraanggrian.pikasso.picasso
 import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
 import com.student.student_searchmap.Data.GoogleResponseData
+import android.widget.Toast
+import android.content.Intent
+import android.net.Uri
 
 
 class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse {
@@ -168,5 +171,38 @@ class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse 
             container.removeView(`object` as LinearLayout)
         }
 
+    }
+
+    fun Call(s:String) {
+        val phoneIntent = Intent(Intent.ACTION_CALL)
+        phoneIntent.data = Uri.parse(s)
+        try {
+            startActivity(phoneIntent)
+        } catch (ex: android.content.ActivityNotFoundException) {
+            Toast.makeText(this,
+                    "Call faild, please try again later.", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+    fun googlemap(startLatitude :Double,startLongitude:Double,endLatitude:Double,endLongitude:Double){
+        val startLatitude = startLatitude
+        val startLongitude = startLongitude
+
+        val endLatitude = endLatitude
+        val endLongitude = endLongitude
+
+        val saddr = "saddr=$startLatitude,$startLongitude"
+        val daddr = "daddr=$endLatitude,$endLongitude"
+        val uriString = "http://maps.google.com/maps?$saddr&$daddr"
+
+        val uri = Uri.parse(uriString)
+
+        val intent = Intent(android.content.Intent.ACTION_VIEW, uri)
+
+        // If you want to get rid of the dialog,
+        // Before the startActivity() add this
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity")
+
+        startActivity(intent)
     }
 }

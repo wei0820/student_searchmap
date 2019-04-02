@@ -220,6 +220,9 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         intent.setClass(this,PlaceDeatilActivity::class.java)
         bundle.putString("id",id)
         bundle.putString("tag",tag)
+        bundle.putDouble("lat",latlon.split(",")[0].toDouble())
+        bundle.putDouble("lon",latlon.split(",")[1].toDouble())
+
         intent.putExtras(bundle)
         startActivity(intent)
 

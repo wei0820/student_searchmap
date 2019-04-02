@@ -32,14 +32,19 @@ class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse 
                 if (googleMapPlaceDetailsData.result.photos != null && googleMapPlaceDetailsData.result.photos.size != 0) {
 
                 }
-//                picasso.load(GoogleMapAPISerive.getPhotos(this,url)).into(mImageView)
                 mRatingBar.numStars = 5
                 mRatingBar.rating = googleMapPlaceDetailsData.result.rating
 
                 mNameText.text = "名稱：" + googleMapPlaceDetailsData.result.name
                 mAddressText.text = "地址：" + googleMapPlaceDetailsData.result.formatted_address
+                mAddressText.setOnClickListener {
+                    googlemap(lat,lon,googleMapPlaceDetailsData.result.geometry.location.lat,googleMapPlaceDetailsData.result.geometry.location.lng)
+                }
                 if (googleMapPlaceDetailsData.result.formatted_phone_number!=null&&!googleMapPlaceDetailsData.result.formatted_phone_number.equals("null")){
                     mPhoneText.text = "聯絡電話：" + googleMapPlaceDetailsData.result.formatted_phone_number
+                    mPhoneText.setOnClickListener {
+                        Call(googleMapPlaceDetailsData.result.formatted_phone_number)
+                    }
 
                 }else{
                     mPhoneText.text = "尚未提供電話"
@@ -82,6 +87,7 @@ class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse 
 
                 }
 
+
             }
         }
     }
@@ -96,6 +102,9 @@ class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse 
     var url :String = ""
     var mPhotoData: ArrayList<String> = ArrayList()
     lateinit var mImagePagerAdapter: ImagePagerAdapter
+     var lat : Double = 0.0
+    var lon  : Double = 0.0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,12 +124,16 @@ class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse 
         mRatingBar = findViewById(R.id.rating)
         mReViewListView = findViewById(R.id.reviewlistview)
 
+
     }
 
     fun getid() {
         val id: String = intent.extras.getString("id")
         url = intent.extras.getString("tag")
+        lat =  intent.extras.getDouble("lat")
+        lon =  intent.extras.getDouble("lon")
         GoogleMapAPISerive.getPlaceDeatail(this, id, this)
+
 
     }
     fun addnewLayout(data: GoogleMapPlaceDetailsData.Result.Reviews) {
@@ -174,14 +187,8 @@ class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse 
     }
 
     fun Call(s:String) {
-        val phoneIntent = Intent(Intent.ACTION_CALL)
-        phoneIntent.data = Uri.parse(s)
-        try {
-            startActivity(phoneIntent)
-        } catch (ex: android.content.ActivityNotFoundException) {
-            Toast.makeText(this,
-                    "Call faild, please try again later.", Toast.LENGTH_SHORT).show()
-        }
+        val myIntentDial = Intent(Intent.ACTION_CALL, Uri.parse("tel:$s"))
+        startActivity(myIntentDial)
 
     }
     fun googlemap(startLatitude :Double,startLongitude:Double,endLatitude:Double,endLongitude:Double){

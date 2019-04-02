@@ -18,15 +18,9 @@
     <list default="true" id="2358b5b2-27e1-4a4d-b9f6-1c8c6ad9f13b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MyMapActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MyMapActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PlaceDeatilActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PlaceDeatilActivity.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlaceDeatilActivity.kt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlaceDeatilActivity.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PlaceDeatilActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="189" column="46" selection-start-line="189" selection-start-column="46" selection-end-line="189" selection-end-column="46" />
+            <state relative-caret-position="150">
+              <caret line="189" column="52" selection-start-line="189" selection-start-column="52" selection-end-line="189" selection-end-column="52" />
               <folding>
                 <element signature="e#39#700#0" expanded="true" />
               </folding>
@@ -79,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider editor-type-id="android-manifest">
             <state />
@@ -2565,8 +2559,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_place_deatil.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/image_viewpager_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MyMapActivity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PlaceDeatilActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PlaceDeatilActivity.kt" />
       </list>
     </option>
   </component>
@@ -2871,7 +2865,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32876712" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -2884,11 +2877,11 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="7" visible="true" weight="0.32763532" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="7" visible="true" weight="0.32763532" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24959612" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24959612" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.3190883" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -3261,16 +3254,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PlaceDeatilActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="189" column="46" selection-start-line="189" selection-start-column="46" selection-end-line="189" selection-end-column="46" />
-          <folding>
-            <element signature="e#39#700#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest">
         <state />
@@ -3284,6 +3267,16 @@
             <element signature="e#2306#2337#0" expanded="true" />
             <element signature="e#2433#2470#0" expanded="true" />
             <element signature="e#2851#2888#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PlaceDeatilActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="189" column="52" selection-start-line="189" selection-start-column="52" selection-end-line="189" selection-end-column="52" />
+          <folding>
+            <element signature="e#39#700#0" expanded="true" />
           </folding>
         </state>
       </provider>

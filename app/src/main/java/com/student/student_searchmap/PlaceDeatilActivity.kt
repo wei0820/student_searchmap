@@ -42,9 +42,7 @@ class PlaceDeatilActivity : AppCompatActivity(), GoogleMapAPISerive.GetResponse 
                 }
                 if (googleMapPlaceDetailsData.result.formatted_phone_number!=null&&!googleMapPlaceDetailsData.result.formatted_phone_number.equals("null")){
                     mPhoneText.text = "聯絡電話：" + googleMapPlaceDetailsData.result.formatted_phone_number
-                    mPhoneText.setOnClickListener {
-                        Call(googleMapPlaceDetailsData.result.formatted_phone_number)
-                    }
+
 
                 }else{
                     mPhoneText.text = "尚未提供電話"

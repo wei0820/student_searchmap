@@ -138,7 +138,10 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     lateinit var mButton2: Button
     lateinit var mButton3: Button
     lateinit var latlon: String
+    lateinit var latlonNow: String
+
     var mFistBoolean : Boolean = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -220,8 +223,8 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         intent.setClass(this,PlaceDeatilActivity::class.java)
         bundle.putString("id",id)
         bundle.putString("tag",tag)
-        bundle.putDouble("lat",latlon.split(",")[0].toDouble())
-        bundle.putDouble("lon",latlon.split(",")[1].toDouble())
+        bundle.putDouble("lat",latlonNow.split(",")[0].toDouble())
+        bundle.putDouble("lon",latlonNow.split(",")[1].toDouble())
 
         intent.putExtras(bundle)
         startActivity(intent)
@@ -254,7 +257,7 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         override fun onLocationChanged(location: Location) {
             if (mFistBoolean) {
                 latlon = location.latitude.toString() + "," + location.longitude.toString()
-
+                latlonNow = latlon
                 GoogleMapAPISerive.setPlaceForRestaurant(this@MyMapActivity, latlon, GoogleMapAPISerive.TYPE_PARKING, this@MyMapActivity)
 
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))

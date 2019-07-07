@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.hendraanggrian:pikasso:0.2@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/26e186862799b19f5f6c805fab1ebdf0/res" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/26e186862799b19f5f6c805fab1ebdf0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.hendraanggrian/pikasso/0.2/57f19a2fd5882a426b04fe09edca6e47d5bb5d43/pikasso-0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

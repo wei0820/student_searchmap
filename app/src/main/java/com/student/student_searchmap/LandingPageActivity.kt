@@ -40,7 +40,7 @@ class LandingPageActivity : Activity() {
         mTextView  = findViewById(R.id.text)
         mRelativeLayout = findViewById(R.id.layout)
         mRelativeLayout.setOnClickListener {
-            startActivity(Intent(this,MyMapActivity::class.java))
+            startActivity(Intent(this,SelectActivity::class.java))
         }
     }
     fun changeColor(){

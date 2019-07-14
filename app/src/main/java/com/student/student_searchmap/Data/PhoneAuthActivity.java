@@ -2,6 +2,7 @@ package com.student.student_searchmap.Data;
 
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.student.student_searchmap.MapsActivity;
 import com.student.student_searchmap.R;
 
 import java.util.concurrent.TimeUnit;
@@ -245,15 +247,17 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
+                            Toast.makeText(PhoneAuthActivity.this,"驗證成功",Toast.LENGTH_SHORT).show();
 
                             FirebaseUser user = task.getResult().getUser();
                             // [START_EXCLUDE]
                             updateUI(STATE_SIGNIN_SUCCESS, user);
+                            isLogin();
+
                             // [END_EXCLUDE]
                         } else {
                             // Sign in failed, display a message and update the UI
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(PhoneAuthActivity.this,"驗證失敗:"+task.getException(),Toast.LENGTH_SHORT).show();
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                                 // [START_EXCLUDE silent]
@@ -281,9 +285,11 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            updateUI(STATE_SIGNIN_SUCCESS, user);
+            isLogin();
+
+//            updateUI(STATE_SIGNIN_SUCCESS, user);
         } else {
-            updateUI(STATE_INITIALIZED);
+//            updateUI(STATE_INITIALIZED);
         }
     }
 
@@ -376,38 +382,88 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonStartVerification:
+//                sendEmail();
                 if (!validatePhoneNumber()) {
                     return;
                 }
-
+//
                 startPhoneNumberVerification(mPhoneNumberField.getText().toString());
                 break;
             case R.id.buttonVerifyPhone:
-
-                SmsManager smsManager = SmsManager.getDefault();
-                try{
-                    smsManager.sendTextMessage("0911325323",
-                            null, "test msg",
-                            PendingIntent.getBroadcast(getApplicationContext(), 0,new Intent(), 0),
-                            null);
-                    Toast.makeText(PhoneAuthActivity.this,"寄送簡訊",Toast.LENGTH_SHORT).show();
-                }catch(Exception e){
-                    e.printStackTrace();
-                };
-//                String code = mVerificationField.getText().toString();
-//                if (TextUtils.isEmpty(code)) {
-//                    mVerificationField.setError("Cannot be empty.");
-//                    return;
+//                try {
+//                    SmsManager smsManager = SmsManager.getDefault();
+//                    smsManager.sendTextMessage("+886911325323", null, "test", null, null);
+//                    Toast.makeText(getApplicationContext(), "SMS sent.",
+//                            Toast.LENGTH_LONG).show();
+//                } catch (Exception e) {
+//                    Toast.makeText(getApplicationContext(),
+//                            "SMS faild, please try again.",
+//                            Toast.LENGTH_LONG).show();
+//                    e.printStackTrace();
 //                }
-//
-//                verifyPhoneNumberWithCode(mVerificationId, code);
+                String code = mVerificationField.getText().toString();
+                if (TextUtils.isEmpty(code)) {
+                    mVerificationField.setError("Cannot be empty.");
+                    return;
+                }
+
+                verifyPhoneNumberWithCode(mVerificationId, code);
                 break;
             case R.id.buttonResend:
-//                resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
+//                sendSMS();
+                resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
                 break;
             case R.id.signOutButton:
-                signOut();
+//                signOut();
                 break;
         }
     }
+    protected void sendSMS() {
+        Log.i("Send SMS", "");
+
+        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+        smsIntent.setData(Uri.parse("smsto:"));
+        smsIntent.setType("vnd.android-dir/mms-sms");
+
+        smsIntent.putExtra("address"  , new String ("+886911325323"));
+        smsIntent.putExtra("sms_body"  , "Test SMS to Angilla");
+        try {
+            startActivity(smsIntent);
+            finish();
+            Log.i("Finished sending SMS...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this,
+                    "SMS faild, please try again later.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    protected void sendEmail() {
+        Log.i("Send email", "");
+
+        String[] TO = {"jheng.wei0919@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this,
+                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void isLogin(){
+        Toast.makeText(PhoneAuthActivity.this,"已成功登入,準備引導到地圖頁面 ",Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(PhoneAuthActivity.this
+                , MapsActivity.class));
+        finish();
+    }
+
 }

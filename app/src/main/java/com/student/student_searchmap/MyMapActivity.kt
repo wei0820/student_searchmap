@@ -38,8 +38,6 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
                 if (result.vicinity == null) {
                     result.vicinity = "no address"
                 }
-
-
                 if (result.types.size != 0) {
 
                     when (result.types[0]) {

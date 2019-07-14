@@ -27,7 +27,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2.0">
-
+                <TextView
+                    android:textSize="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="輸入手機："
+                    android:layout_weight="1.0" />
                 <EditText
                     android:id="@+id/fieldPhoneNumber"
                     android:layout_width="0dp"
@@ -36,6 +41,20 @@
                     android:layout_weight="1.0"
                     android:inputType="phone"/>
 
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.0">
+                <TextView
+                    android:textSize="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="輸入驗證碼："
+                    android:layout_weight="1.0" />
                 <EditText
                     android:id="@+id/fieldVerificationCode"
                     android:layout_width="0dp"
@@ -45,7 +64,6 @@
                     android:inputType="number"/>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +76,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
-                    android:text="@string/start_phone_auth"/>
+                    android:text="發送"/>
 
                 <Button
                     style="@style/Widget.AppCompat.Button.Colored"
@@ -66,7 +84,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
-                    android:text="@string/verify_phone_auth"/>
+                    android:text="驗證"/>
 
                 <Button
                     style="@style/Widget.AppCompat.Button.Colored"
@@ -74,7 +92,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
-                    android:text="@string/resend_phone_auth"/>
+                    android:text="重發"/>
+
             </LinearLayout>
 
         </LinearLayout>

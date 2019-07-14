@@ -29,8 +29,8 @@ class LandingPageActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
-
         checkPermission()
+
 
         initLayout()
         changeColor()
@@ -40,6 +40,7 @@ class LandingPageActivity : Activity() {
         mTextView  = findViewById(R.id.text)
         mRelativeLayout = findViewById(R.id.layout)
         mRelativeLayout.setOnClickListener {
+
             startActivity(Intent(this,SelectActivity::class.java))
         }
     }
@@ -72,6 +73,8 @@ class LandingPageActivity : Activity() {
         if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "已開啟定位", Toast.LENGTH_SHORT).show()
+
             } else {
                 Toast.makeText(this, "需要定位功能,才能使用喔", Toast.LENGTH_SHORT).show()
                 return

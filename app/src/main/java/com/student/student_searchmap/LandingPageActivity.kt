@@ -37,12 +37,7 @@ class LandingPageActivity : Activity() {
         initLayout()
         changeColor()
 
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var addressLocation = geoCoder.getFromLocationName("新北市三重區重陽路一段60巷88號", 1)
-        var latitude = addressLocation[0].latitude
-        var longitude = addressLocation[0].longitude
-        Log.d("latitude",latitude.toString())
-        Log.d("longitude",longitude.toString())
+
 
 
     }

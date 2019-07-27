@@ -30,6 +30,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.student.student_searchmap.MapsActivity;
 import com.student.student_searchmap.R;
+import com.student.student_searchmap.SearchCarActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -462,7 +463,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         Toast.makeText(PhoneAuthActivity.this,"已成功登入,準備引導到地圖頁面 ",Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(PhoneAuthActivity.this
-                , MapsActivity.class));
+                , SearchCarActivity.class));
         finish();
     }
 

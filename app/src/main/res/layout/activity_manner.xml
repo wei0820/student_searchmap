@@ -76,6 +76,33 @@
             android:textSize="20sp"
             tools:layout_editor_absoluteX="32dp"
             tools:layout_editor_absoluteY="230dp" />
+
+
+
+        <Button
+            android:layout_marginLeft="50dp"
+
+            android:id="@+id/startbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="開始時間"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="230dp" />
+
+
+
+
+        <Button
+            android:layout_marginLeft="50dp"
+
+            android:id="@+id/endbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="結束時間"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="230dp" />
     </LinearLayout>
 
 

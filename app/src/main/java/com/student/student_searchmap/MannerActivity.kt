@@ -48,6 +48,13 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mPhoneEdt: EditText
     lateinit var mMessageEdt: EditText
     lateinit var mSendBtn: Button
+     var latitude  :Double = 0.0
+     var longitude :Double =0.0
+    var mSelectType : String = ""
+    var mStartString :String = ""
+    var  mEndString :String = ""
+    var mPhoneString :String = ""
+    var mMessagerString : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manner)
@@ -69,7 +76,6 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
         mMessageEdt = findViewById(R.id.editText5)
         mSendBtn = findViewById(R.id.send)
 
-
         val searchSortSpinnerData = arrayOf("室內", "室外")
         val adapter = ArrayAdapter(
                 this, // Context
@@ -85,6 +91,7 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
         mSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 Toast.makeText(this@MannerActivity, "選擇" + searchSortSpinnerData[position], Toast.LENGTH_SHORT).show()
+                mSelectType  = searchSortSpinnerData[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -111,18 +118,18 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
 
             }
             R.id.startbtn -> {
-                clickTimePicker(mStartbtn)
+                mStartString = clickTimePicker(mStartbtn)
 
             }
             R.id.endbtn -> {
-                clickTimePicker(mEndbtn)
+               mEndString  = clickTimePicker(mEndbtn)
 
             }
             R.id.button4 -> {
                 selectPic()
             }
             R.id.send -> {
-
+                sendData()
             }
         }
     }
@@ -131,8 +138,8 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
         var geoCoder = Geocoder(this, Locale.getDefault())
         var addressLocation = geoCoder.getFromLocationName(addrss, 1)
         if (addressLocation.size != 0) {
-            var latitude = addressLocation[0].latitude
-            var longitude = addressLocation[0].longitude
+             latitude = addressLocation[0].latitude
+            longitude = addressLocation[0].longitude
             Log.d("latitude", latitude.toString())
             Log.d("longitude", longitude.toString())
             val builder = AlertDialog.Builder(this)
@@ -162,17 +169,19 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun clickTimePicker(button: Button) {
+    fun clickTimePicker(button: Button) :String {
+        var time :String = ""
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR)
         val minute = c.get(Calendar.MINUTE)
 
         val tpd = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
             button.setText(h.toString() + " : " + m)
-
+            time = h.toString() + " : " + m;
         }), hour, minute, false)
 
         tpd.show()
+        return  time
     }
 
 
@@ -204,9 +213,7 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
                 ActivityCompat.requestPermissions(
                         this,
                         arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                        REQUEST_EXTERNAL_STORAGE
-
-                )
+                        REQUEST_EXTERNAL_STORAGE)
             }
 
         } else {
@@ -314,11 +321,9 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
 
             try {
                 val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-
                 val cursor = contentResolver.query(
                         datauri!!,
-                        filePathColumn, null, null, null
-                )
+                        filePathColumn, null, null, null)
                 cursor!!.moveToFirst()
 
                 val columnIndex = cursor.getColumnIndex(filePathColumn[0])
@@ -357,8 +362,6 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
                     mMat,
                     false
             )
-            Log.d(javaClass.simpleName, "mScaleBitmap")
-
             Log.d(javaClass.simpleName, mScaleBitmap.toString())
 
         } else {
@@ -385,6 +388,42 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
 
 //        imageview.setImageBitmap(decodedImage)
     }
+    fun sendData(){
+        mPhoneString = mPhoneEdt.text.toString()
+        mMessagerString = mMessageEdt.text.toString()
+        if(latitude!=0.0
+                &&longitude!=0.0
+                && !mStartString.isEmpty()
+                &&!mEndString.isEmpty()
+                &&!img.isEmpty()
+                &&!mPhoneString.isEmpty()
+                &&!mMessagerString.isEmpty()
+                &&!mSelectType.isEmpty()){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("提示")
+            builder.setMessage("以輸入全部資訊")
+            builder.setPositiveButton("知道了", { dialog, whichButton ->
+                dialog.dismiss()
+            })
+            // create dialog and show it
+            val dialog = builder.create()
+            dialog.show()
 
+
+        }else{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("提示")
+            builder.setMessage("請檢查是否有漏內容")
+            builder.setPositiveButton("知道了", { dialog, whichButton ->
+                dialog.dismiss()
+            })
+            // create dialog and show it
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+
+
+    }
 
 }

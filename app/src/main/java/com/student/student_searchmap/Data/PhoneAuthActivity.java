@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.student.student_searchmap.MapsActivity;
+import com.student.student_searchmap.MySharedPrefernces;
 import com.student.student_searchmap.R;
 import com.student.student_searchmap.SearchCarActivity;
 
@@ -251,9 +252,10 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                             Toast.makeText(PhoneAuthActivity.this,"驗證成功",Toast.LENGTH_SHORT).show();
 
                             FirebaseUser user = task.getResult().getUser();
+
                             // [START_EXCLUDE]
                             updateUI(STATE_SIGNIN_SUCCESS, user);
-                            isLogin();
+                            isLogin(user);
 
                             // [END_EXCLUDE]
                         } else {
@@ -286,7 +288,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            isLogin();
+            isLogin(user);
 
 //            updateUI(STATE_SIGNIN_SUCCESS, user);
         } else {
@@ -459,7 +461,11 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         }
     }
 
-    private void isLogin(){
+    private void isLogin(FirebaseUser user){
+        if (user!=null){
+            String uid = user.getUid();
+            MySharedPrefernces.saveIsToken(this,uid);
+        }
         Toast.makeText(PhoneAuthActivity.this,"已成功登入,準備引導到地圖頁面 ",Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(PhoneAuthActivity.this

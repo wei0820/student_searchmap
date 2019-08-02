@@ -27,9 +27,49 @@ import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.util.*
 import android.util.Base64
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 
 
-class MannerActivity : AppCompatActivity(), View.OnClickListener {
+class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallback {
+    override fun getUserLogoutState(p0: Boolean) {
+    }
+
+    override fun resetPassWordState(p0: Boolean) {
+    }
+
+    override fun getsSndPasswordResetEmailState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageType(p0: String?, p1: String?) {
+    }
+
+    override fun getUpdateUserName(p0: Boolean) {
+    }
+
+    override fun getDatabaseData(p0: Any?) {
+    }
+
+    override fun getuserLoginEmail(p0: String?) {
+    }
+
+    override fun getDeleteState(p0: Boolean, p1: String?, p2: Any?) {
+    }
+
+    override fun getFireBaseDBState(p0: Boolean, p1: String?) {
+    }
+
+    override fun getuseLoginId(p0: String?) {
+    }
+
+    override fun createUserState(p0: Boolean) {
+    }
+
+    override fun useLognState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageState(p0: Boolean) {
+    }
 
     private val CAMERA = 66
     private val PHOTO = 99
@@ -55,8 +95,12 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener {
     var  mEndString :String = ""
     var mPhoneString :String = ""
     var mMessagerString : String = ""
+    lateinit var mFirebselibClass: MfiebaselibsClass
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mFirebselibClass = MfiebaselibsClass(this, this@MannerActivity)
+
         setContentView(R.layout.activity_manner)
         phone = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(phone)

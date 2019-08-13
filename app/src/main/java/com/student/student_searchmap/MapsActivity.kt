@@ -18,9 +18,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
-        , LocationListener, GoogleMap.OnCameraMoveStartedListener, GoogleMap.OnCameraIdleListener, View.OnClickListener{
+        , LocationListener, GoogleMap.OnCameraMoveStartedListener, GoogleMap.OnCameraIdleListener, View.OnClickListener , MfirebaeCallback {
 
 
     override fun onCameraMove() {
@@ -44,6 +46,45 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     }
     override fun onClick(p0: View?) {
     }
+    override fun getUserLogoutState(p0: Boolean) {
+    }
+
+    override fun resetPassWordState(p0: Boolean) {
+    }
+
+    override fun getsSndPasswordResetEmailState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageType(p0: String?, p1: String?) {
+    }
+
+    override fun getUpdateUserName(p0: Boolean) {
+    }
+
+    override fun getDatabaseData(p0: Any?) {
+    }
+
+    override fun getuserLoginEmail(p0: String?) {
+    }
+
+    override fun getDeleteState(p0: Boolean, p1: String?, p2: Any?) {
+    }
+
+    override fun getFireBaseDBState(p0: Boolean, p1: String?) {
+    }
+
+    override fun getuseLoginId(p0: String?) {
+    }
+
+    override fun createUserState(p0: Boolean) {
+    }
+
+    override fun useLognState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageState(p0: Boolean) {
+    }
+
     private lateinit var mMap: GoogleMap
     private var locationManager: LocationManager? = null
     val MY_PERMISSIONS_REQUEST_LOCATION = 100
@@ -51,9 +92,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     lateinit var latlonNow: String
 
     var mFistBoolean : Boolean = true
+    lateinit var mFirebselibClass: MfiebaselibsClass
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mFirebselibClass = MfiebaselibsClass(this, this)
+
         setContentView(R.layout.activity_maps)
         checkPermission()
         initLayout()

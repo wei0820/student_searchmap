@@ -10,20 +10,20 @@
 
     <LinearLayout
         android:layout_marginTop="20dp"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
         <TextView
+            android:layout_weight="1"
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="地址"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
 
         <EditText
-            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
             android:id="@+id/editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +31,7 @@
             android:inputType="textPersonName"
           />
         <Button
+            android:layout_weight="1"
             android:id="@+id/checkbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -208,8 +209,6 @@
             android:id="@+id/editText5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
             tools:layout_editor_absoluteX="125dp"
             tools:layout_editor_absoluteY="594dp" />
 

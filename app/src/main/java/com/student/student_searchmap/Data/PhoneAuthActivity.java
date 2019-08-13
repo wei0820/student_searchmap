@@ -441,13 +441,10 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     }
     protected void sendEmail() {
         Log.i("Send email", "");
-
         String[] TO = {"jheng.wei0919@gmail.com"};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
-
-
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");

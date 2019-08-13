@@ -19,6 +19,7 @@ import android.provider.MediaStore
 import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AlertDialog
+import android.text.format.DateFormat
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
@@ -29,6 +30,7 @@ import java.util.*
 import android.util.Base64
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
+import com.student.student_searchmap.Data.ResponseData
 
 
 class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallback {
@@ -158,22 +160,24 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
                     checkAddress(mAddressEdt.text.toString())
                 } else {
                     Toast.makeText(this, "請勿輸入空白", Toast.LENGTH_SHORT).show()
+                    return
                 }
 
             }
             R.id.startbtn -> {
-                mStartString = clickTimePicker(mStartbtn)
-
+                clickTimePicker(mStartbtn)
             }
             R.id.endbtn -> {
-               mEndString  = clickTimePicker(mEndbtn)
+            clickTimePicker(mEndbtn)
 
             }
             R.id.button4 -> {
                 selectPic()
             }
             R.id.send -> {
+
                 sendData()
+
             }
         }
     }
@@ -213,19 +217,16 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun clickTimePicker(button: Button) :String {
-        var time :String = ""
+    fun clickTimePicker(button: Button){
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR)
         val minute = c.get(Calendar.MINUTE)
 
         val tpd = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
             button.setText(h.toString() + " : " + m)
-            time = h.toString() + " : " + m;
         }), hour, minute, false)
 
         tpd.show()
-        return  time
     }
 
 
@@ -305,25 +306,32 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
             //取得照片路徑uri
             val datauri = data.data
             img = encode(datauri)
-            Log.d("img",img)
-            val cr = contentResolver
-            try {
 
+            if(!img.isEmpty()){
+                Toast.makeText(this@MannerActivity,"照片取得成功",Toast.LENGTH_SHORT).show()
 
-                //讀取照片，型態為Bitmap
-                bitmap = BitmapFactory.decodeStream(cr.openInputStream(datauri));
-                //判斷照片為橫向或者為直向，並進入ScalePic判斷圖片是否要進行縮放
-                if (bitmap.width > bitmap.height) ScalePic(
-                        bitmap,
-                        phone.heightPixels
-                );
-                else ScalePic(bitmap, phone.widthPixels);
-            } catch (ex: FileNotFoundException) {
-                ex.printStackTrace()
+            }else{
+                Toast.makeText(this@MannerActivity,"照片取得失敗",Toast.LENGTH_SHORT).show()
 
             }
+//            val cr = contentResolver
+//            try {
+//
+//
+//                //讀取照片，型態為Bitmap
+//                bitmap = BitmapFactory.decodeStream(cr.openInputStream(datauri));
+//                //判斷照片為橫向或者為直向，並進入ScalePic判斷圖片是否要進行縮放
+//                if (bitmap.width > bitmap.height) ScalePic(
+//                        bitmap,
+//                        phone.heightPixels
+//                );
+//                else ScalePic(bitmap, phone.widthPixels);
+//            } catch (ex: FileNotFoundException) {
+//                ex.printStackTrace()
+//
+//            }
 
-            uploadFromPic(datauri)
+//            uploadFromPic(datauri)
 
 
             super.onActivityResult(requestCode, resultCode, data)
@@ -435,18 +443,25 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
     fun sendData(){
         mPhoneString = mPhoneEdt.text.toString()
         mMessagerString = mMessageEdt.text.toString()
+
+
         if(latitude!=0.0
                 &&longitude!=0.0
-                && !mStartString.isEmpty()
-                &&!mEndString.isEmpty()
+                && !mStartbtn.text.toString().isEmpty()
+                &&!mEndbtn.text.toString().isEmpty()
                 &&!img.isEmpty()
                 &&!mPhoneString.isEmpty()
                 &&!mMessagerString.isEmpty()
-                &&!mSelectType.isEmpty()){
+                &&!mSelectType.isEmpty()
+                &&!mPriceEdt.text.toString().isEmpty()){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
+                addData(MySharedPrefernces.getIsToken(this)
+                        ,latitude.toString()
+                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
+                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
                 dialog.dismiss()
             })
             // create dialog and show it
@@ -466,6 +481,28 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
             dialog.show()
         }
 
+
+
+    }
+    fun addData(id :String,lat :String,lon :String,type:String,start:String,end:String,message:String,
+                phone:String,url :String,price:String){
+        val mCal = Calendar.getInstance()
+        val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
+        var mHasMap = HashMap<String, String>()
+        var key = MySharedPrefernces.getIsToken(this) + s
+        mHasMap.put(ResponseData.KEY_ID,id)
+        mHasMap.put(ResponseData.KEY_LAT,lat)
+        mHasMap.put(ResponseData.KEY_LON,lon)
+        mHasMap.put(ResponseData.KEY_SELECT_TYPE,type)
+        mHasMap.put(ResponseData.KEY_START_TIME,start)
+        mHasMap.put(ResponseData.KEY_END_TIME,end)
+        mHasMap.put(ResponseData.KEY_PHONE,phone)
+        mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
+        mHasMap.put(ResponseData.KEY_MESSAGE,message)
+        mHasMap.put(ResponseData.KEY_PRICE,price)
+
+
+        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL,key,mHasMap)
 
 
     }

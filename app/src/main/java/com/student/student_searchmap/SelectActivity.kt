@@ -35,8 +35,8 @@ class SelectActivity : AppCompatActivity() {
 
         }
         mButton2.setOnClickListener {
-            startActivity(Intent(this,PhoneAuthActivity::class.java))
-//            startActivity(Intent(this,MannerActivity::class.java))
+//            startActivity(Intent(this,PhoneAuthActivity::class.java))
+            startActivity(Intent(this,MannerActivity::class.java))
 
 
         }

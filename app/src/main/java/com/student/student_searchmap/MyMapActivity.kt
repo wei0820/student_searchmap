@@ -23,11 +23,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import com.student.student_searchmap.Data.GoogleMapPlaceDetailsData
 import com.student.student_searchmap.Data.GoogleResponseData
 
 class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
-        , LocationListener, GoogleMap.OnCameraMoveStartedListener, GoogleMap.OnCameraIdleListener, View.OnClickListener, GoogleMapAPISerive.GetResponse {
+        , LocationListener, GoogleMap.OnCameraMoveStartedListener, GoogleMap.OnCameraIdleListener, View.OnClickListener, GoogleMapAPISerive.GetResponse , MfirebaeCallback {
 
 
     override fun getData(googleResponseData: GoogleResponseData?) {
@@ -128,6 +130,44 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         latlon = mMap.cameraPosition.target.latitude.toString() + "," + mMap.cameraPosition.target.longitude.toString()
 
     }
+    override fun getUserLogoutState(p0: Boolean) {
+    }
+
+    override fun resetPassWordState(p0: Boolean) {
+    }
+
+    override fun getsSndPasswordResetEmailState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageType(p0: String?, p1: String?) {
+    }
+
+    override fun getUpdateUserName(p0: Boolean) {
+    }
+
+    override fun getDatabaseData(p0: Any?) {
+    }
+
+    override fun getuserLoginEmail(p0: String?) {
+    }
+
+    override fun getDeleteState(p0: Boolean, p1: String?, p2: Any?) {
+    }
+
+    override fun getFireBaseDBState(p0: Boolean, p1: String?) {
+    }
+
+    override fun getuseLoginId(p0: String?) {
+    }
+
+    override fun createUserState(p0: Boolean) {
+    }
+
+    override fun useLognState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageState(p0: Boolean) {
+    }
 
     private lateinit var mMap: GoogleMap
     private var locationManager: LocationManager? = null
@@ -139,10 +179,13 @@ class MyMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
     lateinit var latlonNow: String
 
     var mFistBoolean : Boolean = true
+    lateinit var mFirebselibClass: MfiebaselibsClass
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mFirebselibClass = MfiebaselibsClass(this, this)
+
         setContentView(R.layout.activity_my_map)
         checkPermission()
         initLayout()

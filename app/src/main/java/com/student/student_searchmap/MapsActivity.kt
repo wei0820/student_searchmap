@@ -1,6 +1,8 @@
 package com.student.student_searchmap
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -9,17 +11,22 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import com.google.android.gms.maps.*
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
+import com.student.student_searchmap.Data.ResponseData
+import com.google.gson.Gson
+
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
         , LocationListener, GoogleMap.OnCameraMoveStartedListener, GoogleMap.OnCameraIdleListener, View.OnClickListener , MfirebaeCallback {
@@ -62,6 +69,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     }
 
     override fun getDatabaseData(p0: Any?) {
+        if (p0!=null){
+            val gson = Gson()
+            val jsonInString = gson.toJson(p0)
+            val responseData :ResponseData = gson.fromJson(jsonInString,ResponseData::class.java)
+            addMarker(LatLng(responseData.lat.toDouble(), responseData.lon.toDouble()),"1",responseData.message,responseData.id,"1")
+            mProgressDialog.dismiss()
+
+        }
+
+
     }
 
     override fun getuserLoginEmail(p0: String?) {
@@ -93,6 +110,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
 
     var mFistBoolean : Boolean = true
     lateinit var mFirebselibClass: MfiebaselibsClass
+    lateinit var mProgressDialog :ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,6 +119,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         setContentView(R.layout.activity_maps)
         checkPermission()
         initLayout()
+        MapsInitializer.initialize(applicationContext)
+
+
+        mProgressDialog = ProgressDialog(this)
+
+        mProgressDialog.setMessage("loading")
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.show()
     }
 
 
@@ -138,7 +164,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         mMap.setOnCameraMoveListener(this)
         mMap.setOnCameraMoveCanceledListener(this)
         mMap.setOnCameraIdleListener(this)
-//        mMap.setOnMarkerClickListener(gmapListener)
+        mMap.setOnMarkerClickListener(gmapListener)
+        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
 
     }
     private val locationListener: LocationListener = object : LocationListener {
@@ -182,5 +209,45 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSIONS_REQUEST_LOCATION)
         }
 
+    }
+    // 在地圖加入指定位置與標題的標記
+    private fun addMarker(place: LatLng, title: String, context: String,id:String,tag:String) {
+        val markerOptions = MarkerOptions()
+        val marker : Marker
+        markerOptions.position(place)
+                .title(title)
+                .snippet(context)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_park_car))
+        marker =  mMap.addMarker(markerOptions)
+        marker.tag = id+","+tag
+    }
+    private val gmapListener = GoogleMap.OnMarkerClickListener { marker ->
+        marker.showInfoWindow()
+        // 用吐司顯示註解
+        val id :String  = marker.tag.toString().split(",")[0]
+        val tag :String  = marker.tag.toString().split(",")[1]
+
+        val intent = Intent()
+        val bundle = Bundle()
+        intent.setClass(this,PlaceDeatilActivity::class.java)
+        bundle.putString("id",id)
+        bundle.putString("tag",tag)
+        bundle.putDouble("lat",latlonNow.split(",")[0].toDouble())
+        bundle.putDouble("lon",latlonNow.split(",")[1].toDouble())
+
+        intent.putExtras(bundle)
+        startActivity(intent)
+
+
+        true
+    }
+
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK ){
+            this.finish()
+        }
+
+        return super.onKeyUp(keyCode, event)
     }
 }

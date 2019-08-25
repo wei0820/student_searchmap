@@ -443,8 +443,6 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
     fun sendData(){
         mPhoneString = mPhoneEdt.text.toString()
         mMessagerString = mMessageEdt.text.toString()
-
-
         if(latitude!=0.0
                 &&longitude!=0.0
                 && !mStartbtn.text.toString().isEmpty()
@@ -463,6 +461,7 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
                         ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
                         mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
                 dialog.dismiss()
+                this.finish()
             })
             // create dialog and show it
             val dialog = builder.create()
@@ -500,8 +499,6 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
         mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
         mHasMap.put(ResponseData.KEY_MESSAGE,message)
         mHasMap.put(ResponseData.KEY_PRICE,price)
-
-
         mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL,key,mHasMap)
 
 

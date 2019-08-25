@@ -14,4 +14,19 @@ public class ResponseData {
     public static  final  String KEY_PRICE = "price";
 
 
+    public String id;
+    public String lat;
+    public String lon;
+    public String starttime;
+    public String endtime;
+    public String url;
+    public String phone;
+    public String message;
+    public String select;
+    public String price;
+
+
+
+
+
 }

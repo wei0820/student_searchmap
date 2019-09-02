@@ -1,28 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+<ImageView
+    android:layout_marginTop="20dp"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/img"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <Button
-        android:textSize="20dp"
-        android:text="汽車服務"
-        android:layout_marginTop="250dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button_1"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="30dp"
-        ></Button>
-    <Button
-        android:text="共享車位"
-        android:textSize="20dp"
-        android:layout_centerHorizontal="true"
+    android:layout_height="150dp" />
+    <LinearLayout
+        android:layout_below="@+id/img"
+        android:layout_above="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        android:layout_below="@id/button_1"
-        android:id="@+id/button_2"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+            >
+            <TextView
+                android:textSize="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地址:"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/add"
+                android:layout_marginLeft="12dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <TextView
+                android:textSize="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="場地:"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/select"
+                android:layout_marginLeft="12dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <TextView
+                android:textSize="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="電話:"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_marginLeft="12dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <TextView
+                android:textSize="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="價錢:"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_marginLeft="12dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <TextView
+                android:textSize="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="營業時間:"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_marginLeft="12dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <TextView
+                android:textSize="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="訊息:"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_marginLeft="12dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ></TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:text="我要預約"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         ></Button>
 </RelativeLayout>

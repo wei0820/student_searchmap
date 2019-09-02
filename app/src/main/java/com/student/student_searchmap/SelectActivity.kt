@@ -80,4 +80,6 @@ class SelectActivity : AppCompatActivity() {
                     MY_PERMISSIONS_REQUEST_READ_CONTACTS)
         }
     }
+
+
 }

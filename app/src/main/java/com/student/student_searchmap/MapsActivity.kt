@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -14,6 +15,7 @@ import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.maps.*
 
@@ -25,7 +27,7 @@ import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import com.student.student_searchmap.Data.ResponseData
 import com.google.gson.Gson
-
+import java.util.*
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
@@ -73,7 +75,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
             val gson = Gson()
             val jsonInString = gson.toJson(p0)
             val responseData :ResponseData = gson.fromJson(jsonInString,ResponseData::class.java)
-            addMarker(LatLng(responseData.lat.toDouble(), responseData.lon.toDouble()),"1",responseData.message,responseData.id,"1")
+            addMarker(LatLng(responseData.lat.toDouble(), responseData.lon.toDouble()),responseData.id,responseData.message,jsonInString)
+
+            handleLocation(responseData.lat.toDouble(), responseData.lon.toDouble())
+
             mProgressDialog.dismiss()
 
         }
@@ -127,6 +132,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         mProgressDialog.setMessage("loading")
         mProgressDialog.setCancelable(false)
         mProgressDialog.show()
+        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+
     }
 
 
@@ -165,7 +172,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         mMap.setOnCameraMoveCanceledListener(this)
         mMap.setOnCameraIdleListener(this)
         mMap.setOnMarkerClickListener(gmapListener)
-        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+        mMap.setOnMarkerClickListener(gmapListener)
+
 
     }
     private val locationListener: LocationListener = object : LocationListener {
@@ -211,7 +219,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
 
     }
     // 在地圖加入指定位置與標題的標記
-    private fun addMarker(place: LatLng, title: String, context: String,id:String,tag:String) {
+    private fun addMarker(place: LatLng, title: String, context: String,json:String) {
         val markerOptions = MarkerOptions()
         val marker : Marker
         markerOptions.position(place)
@@ -219,27 +227,39 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
                 .snippet(context)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_park_car))
         marker =  mMap.addMarker(markerOptions)
-        marker.tag = id+","+tag
+        marker.tag = json
+
     }
     private val gmapListener = GoogleMap.OnMarkerClickListener { marker ->
         marker.showInfoWindow()
         // 用吐司顯示註解
-        val id :String  = marker.tag.toString().split(",")[0]
-        val tag :String  = marker.tag.toString().split(",")[1]
-
+        val json :String  = marker.tag.toString()
         val intent = Intent()
         val bundle = Bundle()
-        intent.setClass(this,PlaceDeatilActivity::class.java)
-        bundle.putString("id",id)
-        bundle.putString("tag",tag)
-        bundle.putDouble("lat",latlonNow.split(",")[0].toDouble())
-        bundle.putDouble("lon",latlonNow.split(",")[1].toDouble())
-
+        intent.setClass(this,MainActivity::class.java)
+        bundle.putString("json",json)
         intent.putExtras(bundle)
         startActivity(intent)
 
 
+
+
         true
+    }
+    private fun handleLocation(latitude: Double,longitude:Double)  {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        Thread(Runnable {
+            try {
+                var addresses = geocoder.getFromLocation(
+                        latitude, longitude, 1
+                )
+//                textView.text = addresses.get(0).getAddressLine(0)
+//                mProgressDialog.dismiss()
+                Log.d("Jack",addresses.get(0).getAddressLine(0))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }).start()
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
@@ -250,4 +270,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
 
         return super.onKeyUp(keyCode, event)
     }
+
+
 }

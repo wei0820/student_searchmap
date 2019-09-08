@@ -67,6 +67,8 @@ dependencies {
     implementation 'com.gcssloop.widget:rclayout:1.6.0'
 
     implementation 'com.karumi:dexter:4.2.0'
+    compile 'com.jaywei:compresstool:1.2.1'
+
 
 
 }

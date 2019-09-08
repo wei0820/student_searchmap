@@ -14,12 +14,63 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.hendraanggrian.pikasso.picasso
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import com.student.student_searchmap.Data.ResponseData
 import java.util.*
+import com.firebase.client.Firebase
 
-class MainActivity : AppCompatActivity() {
+
+
+class MainActivity : AppCompatActivity(), MfirebaeCallback {
+    override fun getUserLogoutState(p0: Boolean) {
+    }
+
+    override fun resetPassWordState(p0: Boolean) {
+    }
+
+    override fun getsSndPasswordResetEmailState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageType(p0: String?, p1: String?) {
+    }
+
+    override fun getUpdateUserName(p0: Boolean) {
+    }
+
+    override fun getDatabaseData(p0: Any?) {
+
+
+    }
+
+    override fun getuserLoginEmail(p0: String?) {
+    }
+
+    override fun getDeleteState(p0: Boolean, p1: String?, p2: Any?) {
+        if (p0) {
+            Toast.makeText(this, "刪除成功！", Toast.LENGTH_SHORT).show();
+            mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+        } else {
+            Toast.makeText(this, "刪除失敗！", Toast.LENGTH_SHORT).show();
+        }    }
+
+    override fun getFireBaseDBState(p0: Boolean, p1: String?) {
+    }
+
+    override fun getuseLoginId(p0: String?) {
+    }
+
+    override fun createUserState(p0: Boolean) {
+    }
+
+    override fun useLognState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageState(p0: Boolean) {
+    }
     lateinit var img :ImageView
     lateinit var add :TextView
     lateinit var select:TextView
@@ -29,9 +80,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var message :TextView
     lateinit var button: Button
     lateinit var mProgressDialog : ProgressDialog
+    lateinit var mFirebselibClass: MfiebaselibsClass
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContentView(R.layout.activity_main)
         img = findViewById(R.id.img)
         add  =findViewById(R.id.add)
@@ -67,7 +121,11 @@ class MainActivity : AppCompatActivity() {
         handleLocation(responseData.lat.toDouble(),responseData.lon.toDouble(),add)
 
         button.setOnClickListener {
+            Toast.makeText(this,"預約成功",Toast.LENGTH_SHORT).show()
+
             val phone :String = responseData.phone.replaceFirst("0","+886")
+            val firebase = Firebase(ResponseData.KEY_URL)
+            firebase.child(responseData.date).removeValue();
             sendSMS(phone)
         }
 
@@ -97,7 +155,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     protected fun sendSMS(phone:String) {
-        Log.i("Send SMS", "")
 
         val smsIntent = Intent(Intent.ACTION_VIEW)
         smsIntent.data = Uri.parse("smsto:")

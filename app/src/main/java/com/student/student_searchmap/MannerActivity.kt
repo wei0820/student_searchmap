@@ -31,6 +31,9 @@ import android.util.Base64
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import com.student.student_searchmap.Data.ResponseData
+import net.bither.util.CompressTools
+import net.bither.util.FileUtil.getReadableFileSize
+import java.io.File
 
 
 class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallback {
@@ -99,6 +102,8 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
     var mMessagerString : String = ""
     lateinit var mFirebselibClass: MfiebaselibsClass
 
+     var oldFile: File? = null
+    private val filePath: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFirebselibClass = MfiebaselibsClass(this, this@MannerActivity)
@@ -305,15 +310,30 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
         if ((requestCode == CAMERA || requestCode == PHOTO) && data != null) {
             //取得照片路徑uri
             val datauri = data.data
-            img = encode(datauri)
+            oldFile = PhotoManager.getTempFile(this,datauri);
+            CompressTools.getInstance(this).compressToFile(oldFile, object : CompressTools.OnCompressListener {
+                override fun onStart() {
 
-            if(!img.isEmpty()){
-                Toast.makeText(this@MannerActivity,"照片取得成功",Toast.LENGTH_SHORT).show()
+                }
 
-            }else{
-                Toast.makeText(this@MannerActivity,"照片取得失敗",Toast.LENGTH_SHORT).show()
+                override fun onFail(error: String) {
 
-            }
+                }
+
+                override fun onSuccess(file: File) {
+                    Toast.makeText(this@MannerActivity,"Size : %s" + getReadableFileSize(file.length()),Toast.LENGTH_SHORT).show()
+
+                    img = encode(PhotoManager.getFilePath(file.path.toString()))
+                    if(!img.isEmpty()){
+                        Toast.makeText(this@MannerActivity,"照片取得成功",Toast.LENGTH_SHORT).show()
+
+                    }else{
+                        Toast.makeText(this@MannerActivity,"照片取得失敗",Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+            })//
+
 //            val cr = contentResolver
 //            try {
 //
@@ -489,6 +509,7 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
         val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
         var mHasMap = HashMap<String, String>()
         var key = MySharedPrefernces.getIsToken(this) + s
+        mHasMap.put(ResponseData.KEY_DATE,key)
         mHasMap.put(ResponseData.KEY_ID,id)
         mHasMap.put(ResponseData.KEY_LAT,lat)
         mHasMap.put(ResponseData.KEY_LON,lon)

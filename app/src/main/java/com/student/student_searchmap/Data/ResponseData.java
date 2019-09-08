@@ -12,7 +12,7 @@ public class ResponseData {
     public static  final  String KEY_MESSAGE = "message";
     public static  final  String KEY_SELECT_TYPE = "select";
     public static  final  String KEY_PRICE = "price";
-
+    public static  final  String KEY_DATE = "date";
 
     public String id;
     public String lat;
@@ -24,6 +24,7 @@ public class ResponseData {
     public String message;
     public String select;
     public String price;
+    public String date;
 
 
 

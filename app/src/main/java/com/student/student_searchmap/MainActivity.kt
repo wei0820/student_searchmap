@@ -8,6 +8,7 @@ import android.media.Image
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Base64
 import android.util.Log
 import android.widget.Button
@@ -126,7 +127,9 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
             val phone :String = responseData.phone.replaceFirst("0","+886")
             val firebase = Firebase(ResponseData.KEY_URL)
             firebase.child(responseData.date).removeValue();
-            sendSMS(phone)
+            val mCal = Calendar.getInstance()
+            val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
+            sendSMS(phone,s.toString(),responseData.id)
         }
 
 
@@ -154,14 +157,14 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
         }).start()
     }
 
-    protected fun sendSMS(phone:String) {
+    protected fun sendSMS(phone:String,time:String,id:String) {
 
         val smsIntent = Intent(Intent.ACTION_VIEW)
         smsIntent.data = Uri.parse("smsto:")
         smsIntent.type = "vnd.android-dir/mms-sms"
 
         smsIntent.putExtra("address", phone)
-        smsIntent.putExtra("sms_body", "Test SMS to Angilla")
+        smsIntent.putExtra("sms_body", "親愛的客戶您好:謝謝您使用停車App於"+time+"預租「"+id+"」停車位,如有疑義,請洽詢客服信箱 ya_1827@yahoo.com.tw")
         try {
             startActivity(smsIntent)
             finish()

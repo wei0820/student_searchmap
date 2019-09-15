@@ -164,7 +164,7 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
         smsIntent.type = "vnd.android-dir/mms-sms"
 
         smsIntent.putExtra("address", phone)
-        smsIntent.putExtra("sms_body", "親愛的客戶您好:謝謝您使用停車App於"+time+"預租「"+id+"」停車位,如有疑義,請洽詢客服信箱 ya_1827@yahoo.com.tw")
+        smsIntent.putExtra("sms_body", "親愛的客戶您好:謝謝您使用停車App於"+time+"預租停車位,如有疑義,請洽詢客服信箱 ya_1827@yahoo.com.tw")
         try {
             startActivity(smsIntent)
             finish()

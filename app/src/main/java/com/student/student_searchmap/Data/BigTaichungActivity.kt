@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.GridView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.student.student_searchmap.R
 
 
@@ -19,6 +20,8 @@ class BigTaichungActivity : AppCompatActivity() {
         val place = ArrayAdapter(this, android.R.layout.simple_list_item_1, mAppNames
         )
         mGridView.adapter = place
-
+        mGridView.setOnItemClickListener { adapterView, view, i, l ->
+            Toast.makeText(this,"您選擇："+mAppNames[i],Toast.LENGTH_LONG).show()
+        }
     }
 }

@@ -175,4 +175,25 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
         }
 
     }
+    fun googlemap(startLatitude :Double,startLongitude:Double,endLatitude:Double,endLongitude:Double){
+        val startLatitude = startLatitude
+        val startLongitude = startLongitude
+
+        val endLatitude = endLatitude
+        val endLongitude = endLongitude
+
+        val saddr = "saddr=$startLatitude,$startLongitude"
+        val daddr = "daddr=$endLatitude,$endLongitude"
+        val uriString = "http://maps.google.com/maps?$saddr&$daddr"
+
+        val uri = Uri.parse(uriString)
+
+        val intent = Intent(android.content.Intent.ACTION_VIEW, uri)
+
+        // If you want to get rid of the dialog,
+        // Before the startActivity() add this
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity")
+
+        startActivity(intent)
+    }
 }

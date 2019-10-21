@@ -15,12 +15,13 @@ import android.support.v4.app.ActivityCompat
 import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
-
+import com.student.student_searchmap.Data.BigTaichungActivity
 
 
 class SelectActivity : AppCompatActivity() {
     lateinit var mButton:Button
     lateinit var mButton2: Button
+    lateinit var mbutton3 :Button
     private val MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ class SelectActivity : AppCompatActivity() {
         setContentView(R.layout.content_select)
         mButton = findViewById(R.id.button_1)
         mButton2 = findViewById(R.id.button_2)
+        mbutton3 = findViewById(R.id.button_3)
         set()
 
         mButton.setOnClickListener {
@@ -38,6 +40,11 @@ class SelectActivity : AppCompatActivity() {
             startActivity(Intent(this,PhoneAuthActivity::class.java))
 //            startActivity(Intent(this,MannerActivity::class.java))
 
+
+
+        }
+        mbutton3.setOnClickListener {
+            startActivity(Intent(this,BigTaichungActivity::class.java))
 
         }
 

@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Data.BigTaichungActivity"></activity>
+        <activity android:name=".Data.BigTaichungActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".SearchCarActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

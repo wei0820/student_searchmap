@@ -115,16 +115,19 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     var mFistBoolean : Boolean = true
     lateinit var mFirebselibClass: MfiebaselibsClass
     lateinit var mProgressDialog : ProgressDialog
-
+    var lat : Double = 0.0;
+    var lon :Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFirebselibClass = MfiebaselibsClass(this, this)
 
         setContentView(R.layout.activity_maps)
         checkPermission()
-        initLayout()
         MapsInitializer.initialize(applicationContext)
 
+        getData()
+
+        initLayout()
 //
 //        mProgressDialog = ProgressDialog(this)
 //
@@ -132,6 +135,13 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
 //        mProgressDialog.setCancelable(false)
 //        mProgressDialog.show()
 //        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+
+    }
+    fun getData(){
+        if (intent.extras.getDouble("lat")!=null&&intent.extras.getDouble("lon")!=null){
+            lat=  intent.extras.getDouble("lat")
+            lon =intent.extras.getDouble("lon")
+        }
 
     }
 
@@ -142,14 +152,14 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
-
-        try {
-            // Request location updates
-            locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
-        } catch (ex: SecurityException) {
-
-        }
+//        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
+//
+//        try {
+//            // Request location updates
+//            locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
+//        } catch (ex: SecurityException) {
+//
+//        }
 
         /**
          * Manipulates the map once available.
@@ -172,6 +182,7 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         mMap.setOnCameraIdleListener(this)
         mMap.setOnMarkerClickListener(gmapListener)
         mMap.setOnMarkerClickListener(gmapListener)
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lon), 12.0f))
 
 
     }

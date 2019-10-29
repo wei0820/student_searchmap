@@ -39,7 +39,9 @@
 
         <activity
             android:name=".Data.Map2Activity"
-            android:label="@string/title_activity_map2"></activity>
+            android:label="@string/title_activity_map2"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name=".Data.BigTaichungActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

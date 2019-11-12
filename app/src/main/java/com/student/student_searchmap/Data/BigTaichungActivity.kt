@@ -42,6 +42,9 @@ class BigTaichungActivity : AppCompatActivity() {
             "24.274274, 120.776053",
             "25.026617, 121.543245",
             "24.185987, 120.816106")
+    val type = arrayOf(0,1,2,3,4,5,6,7,8,9,10,
+            11,12,13,14,15,16,17,18,19,20,
+            21,22,23,24,25,26,27,28)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +62,8 @@ class BigTaichungActivity : AppCompatActivity() {
             var bundle = Bundle()
             bundle.putDouble("lat",lat)
             bundle.putDouble("lon",lon)
+            bundle.putInt("ltypeon",type[i])
+
             intent.putExtras(bundle)
             intent.setClass(this,Map2Activity::class.java)
             startActivity(intent)

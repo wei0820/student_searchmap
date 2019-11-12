@@ -27,12 +27,13 @@
         android:layout_marginBottom="30dp"
         ></Button>
     <Button
+        android:id="@+id/button_3"
+
         android:layout_below="@id/button_1"
         android:textSize="20dp"
         android:text="大台中共享"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/button_3"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginBottom="30dp"

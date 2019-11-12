@@ -38,7 +38,7 @@ class SelectActivity : AppCompatActivity() {
 
         }
         mbutton3.setOnClickListener {
-            startActivity(Intent(this,BigTaichungActivity::class.java))
+            startActivity(Intent(this,SearchCar2Activity::class.java))
 
         }
 

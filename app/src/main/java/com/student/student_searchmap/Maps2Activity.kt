@@ -132,7 +132,7 @@ class Maps2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamer
         mProgressDialog.setMessage("loading")
         mProgressDialog.setCancelable(false)
         mProgressDialog.show()
-        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+        mFirebselibClass.getFirebaseDatabase("https://search-245709.firebaseio.com/0", "data")
 
     }
 

@@ -23,15 +23,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2358b5b2-27e1-4a4d-b9f6-1c8c6ad9f13b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SearchCar2Activity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SelectActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SelectActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/BigMannerActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/BigMannerActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_manner_big.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manner_big.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_select.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_select.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +49,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="52705cfc" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -93,22 +101,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SelectActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+            <state relative-caret-position="120">
+              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
               <folding>
                 <element signature="e#39#433#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SearchCarActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-              <folding>
-                <element signature="e#39#170#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,27 +113,44 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/BigMannerActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1237">
-              <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+            <state relative-caret-position="181">
+              <caret line="164" column="20" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_big_taichung.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/ResponseData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+            <state relative-caret-position="57">
+              <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1426">
+              <caret line="134" column="84" selection-start-line="134" selection-start-column="84" selection-end-line="134" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MannerActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="129" column="28" selection-start-line="129" selection-end-line="130" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SearchCar2Activity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+            <state relative-caret-position="169">
+              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -145,8 +158,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/BigTaichungActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="12" column="15" lean-forward="true" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+            <state relative-caret-position="132">
+              <caret line="14" column="39" selection-start-line="14" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -162,27 +175,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MapsActivity.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_select.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="158">
+              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
     </leaf>
@@ -198,7 +207,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mVerifyButton</find>
       <find>mStartButton</find>
       <find>buttonStartVerification</find>
       <find>OnVerificationStateChangedCallbacks</find>
@@ -228,6 +236,7 @@
       <find>lat</find>
       <find>mProgressDialog</find>
       <find>mCallbacks</find>
+      <find>button_1</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -267,19 +276,20 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/PhotoManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/ResponseData.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MannerActivity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_select.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SearchCarActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MainActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Main2Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_big_taichung.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/BigTaichungActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/Map2Activity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/BigMannerActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Select2Activity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SelectActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SearchCar2Activity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manner_big.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_select.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/BigMannerActivity.kt" />
       </list>
     </option>
   </component>
@@ -314,6 +324,11 @@
             <path>
               <item name="student_searchmap" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="student_searchmap" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
             </path>
             <path>
               <item name="student_searchmap" type="1abcf292:AndroidViewProjectNode" />
@@ -434,7 +449,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.student_searchmap [signingReport]">
+  <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -608,7 +623,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32956153" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4983845" visible="true" weight="0.31445783" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" weight="0.3281471" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.3281471" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.503231" side_tool="true" weight="0.49787837" />
       <window_info anchor="bottom" x="21" y="207" width="1238" height="386" id="Logcat" order="10" sideWeight="0.49676898" weight="0.49759036" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32956153" />
@@ -711,7 +726,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Library/Android/sdk/sources/android-28/android/content/pm/PackageManager.java" />
     <entry file="jar://$APPLICATION_HOME_DIR$/jre/jdk/Contents/Home/jre/lib/rt.jar!/java/util/Optional.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -771,13 +785,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/ResponseData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -906,23 +913,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MannerActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9006">
-          <caret line="507" column="3" selection-start-line="507" selection-start-column="3" selection-end-line="508" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manner.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4009">
           <caret line="211" selection-start-line="211" selection-end-line="211" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manner_big.xml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_phone_auth.xml">
@@ -932,14 +928,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/PhoneAuthActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -952,14 +940,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_select.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Select2Activity.kt">
       <provider selected="true" editor-type-id="text-editor">
@@ -985,9 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_big_taichung.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -996,22 +973,16 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/BigTaichungActivity.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manner_big.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="12" column="15" lean-forward="true" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SelectActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        <state relative-caret-position="334">
+          <caret line="54" column="37" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="37" />
           <folding>
-            <element signature="e#39#433#0" expanded="true" />
+            <element signature="e#381#1383#0" />
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_search_car.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1021,17 +992,79 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_map.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_select.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SearchCar2Activity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+        <state relative-caret-position="169">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/MannerActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="129" column="28" selection-start-line="129" selection-end-line="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/ResponseData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Data/BigTaichungActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="14" column="39" selection-start-line="14" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/SelectActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+          <folding>
+            <element signature="e#39#433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/Maps2Activity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1426">
+          <caret line="134" column="84" selection-start-line="134" selection-start-column="84" selection-end-line="134" selection-end-column="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/student/student_searchmap/BigMannerActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1237">
-          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+        <state relative-caret-position="181">
+          <caret line="164" column="20" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="20" />
         </state>
       </provider>
     </entry>

@@ -96,11 +96,17 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
      var latitude  :Double = 0.0
      var longitude :Double =0.0
     var mSelectType : String = ""
+    var mType : Int = 0
+
     var mStartString :String = ""
     var  mEndString :String = ""
     var mPhoneString :String = ""
     var mMessagerString : String = ""
     lateinit var mFirebselibClass: MfiebaselibsClass
+    lateinit var mSpinner2: Spinner
+    val mAppNames = arrayOf(0,1,2,3,4,5,6,7,8,9,10,
+            11,12,13,14,15,16,17,18,19,20,
+            21,22,23,24,25,26,27,28)
 
      var oldFile: File? = null
     private val filePath: String? = null
@@ -126,8 +132,8 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mPhoneEdt = findViewById(R.id.editText4)
         mMessageEdt = findViewById(R.id.editText5)
         mSendBtn = findViewById(R.id.send)
-
         val searchSortSpinnerData = arrayOf("室內", "室外")
+
         val adapter = ArrayAdapter(
                 this, // Context
                 android.R.layout.simple_spinner_item, // Layout
@@ -154,7 +160,34 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mEndbtn.setOnClickListener(this)
         mPhotoButtton.setOnClickListener(this)
         mSendBtn.setOnClickListener(this)
+        val searchSortSpinnerData2 =arrayOf(
+                "中區","東區","西區","南區","北區","西屯區","南屯區",
+                "北屯區","豐原區","大里區","太平區","清水區","沙鹿區",
+                "大甲區","東勢區","梧棲區","烏日區", "神岡區","大肚區",
+                "大雅區","后里區","霧峰區","潭子區","龍井區","外埔區",
+                "和平區","石岡區",
+                "大安區","新社區")
 
+        mSpinner2 = findViewById(R.id.spinner2)
+        val adapter2 = ArrayAdapter(
+                this, // Context
+                android.R.layout.simple_spinner_item, // Layout
+                searchSortSpinnerData2 // Array
+        )
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+
+        // Finally, data bind the spinner object with dapter
+        mSpinner2.adapter = adapter2;
+        mSpinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                Toast.makeText(this@BigMannerActivity, "選擇" + searchSortSpinnerData2[position], Toast.LENGTH_SHORT).show()
+                mType = mAppNames[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Another interface callback
+            }
+        }
     }
 
     @SuppressLint("NewApi")
@@ -181,15 +214,18 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             }
             R.id.send -> {
 
-                sendData()
-
+//                sendData()
+                test(MySharedPrefernces.getIsToken(this)
+                        ,latitude.toString()
+                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
+                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
             }
         }
     }
 
     fun checkAddress(addrss: String) {
         var geoCoder = Geocoder(this, Locale.getDefault())
-        var addressLocation = geoCoder.getFromLocationName(addrss, 1)
+        var addressLocation = geoCoder.getFromLocationName("台中市豐原區圓環東路782號", 1)
         if (addressLocation.size != 0) {
              latitude = addressLocation[0].latitude
             longitude = addressLocation[0].longitude
@@ -476,10 +512,10 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
-                addData(MySharedPrefernces.getIsToken(this)
-                        ,latitude.toString()
-                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
-                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
+//                test(MySharedPrefernces.getIsToken(this)
+//                        ,latitude.toString()
+//                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
+//                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
                 dialog.dismiss()
                 this.finish()
             })
@@ -520,7 +556,29 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
         mHasMap.put(ResponseData.KEY_MESSAGE,message)
         mHasMap.put(ResponseData.KEY_PRICE,price)
-        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL,key,mHasMap)
+        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mType,key,mHasMap)
+
+
+    }
+
+    fun test(id :String,lat :String,lon :String,type:String,start:String,end:String,message:String,
+                phone:String,url :String,price:String){
+        val mCal = Calendar.getInstance()
+        val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
+        var mHasMap = HashMap<String, String>()
+        var key = MySharedPrefernces.getIsToken(this) + s
+        mHasMap.put(ResponseData.KEY_DATE,key)
+        mHasMap.put(ResponseData.KEY_ID,"poPnzPS2cRQv5jxftqnIWWOB9IO2")
+        mHasMap.put(ResponseData.KEY_LAT,lat)
+        mHasMap.put(ResponseData.KEY_LON,lon)
+        mHasMap.put(ResponseData.KEY_SELECT_TYPE,"室內")
+        mHasMap.put(ResponseData.KEY_START_TIME,"0 : 48")
+        mHasMap.put(ResponseData.KEY_END_TIME,"6 : 48")
+        mHasMap.put(ResponseData.KEY_PHONE,"0987987987")
+        mHasMap.put(ResponseData.KEY_MESSAGE,"1111")
+        mHasMap.put(ResponseData.KEY_PRICE,"100")
+        mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
+        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mType,key,mHasMap)
 
 
     }

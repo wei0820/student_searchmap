@@ -38,7 +38,24 @@
             android:text="check"
             ></Button>
     </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地區"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <LinearLayout
         android:layout_marginTop="20dp"
 

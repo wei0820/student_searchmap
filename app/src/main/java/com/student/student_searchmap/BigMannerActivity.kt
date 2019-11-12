@@ -214,18 +214,18 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             }
             R.id.send -> {
 
-//                sendData()
-                test(MySharedPrefernces.getIsToken(this)
-                        ,latitude.toString()
-                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
-                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
+                sendData()
+//                test(MySharedPrefernces.getIsToken(this)
+//                        ,latitude.toString()
+//                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
+//                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
             }
         }
     }
 
     fun checkAddress(addrss: String) {
         var geoCoder = Geocoder(this, Locale.getDefault())
-        var addressLocation = geoCoder.getFromLocationName("台中市豐原區圓環東路782號", 1)
+        var addressLocation = geoCoder.getFromLocationName(addrss, 1)
         if (addressLocation.size != 0) {
              latitude = addressLocation[0].latitude
             longitude = addressLocation[0].longitude

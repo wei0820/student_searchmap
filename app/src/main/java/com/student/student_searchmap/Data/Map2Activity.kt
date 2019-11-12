@@ -70,17 +70,17 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     }
 
     override fun getDatabaseData(p0: Any?) {
-//        if (p0!=null){
-//            val gson = Gson()
-//            val jsonInString = gson.toJson(p0)
-//            val responseData :ResponseData = gson.fromJson(jsonInString,ResponseData::class.java)
-//            addMarker(LatLng(responseData.lat.toDouble(), responseData.lon.toDouble()),responseData.id,responseData.message,jsonInString)
-//
-//            handleLocation(responseData.lat.toDouble(), responseData.lon.toDouble())
-//
-//            mProgressDialog.dismiss()
-//
-//        }
+        if (p0!=null){
+            val gson = Gson()
+            val jsonInString = gson.toJson(p0)
+            val responseData :ResponseData = gson.fromJson(jsonInString,ResponseData::class.java)
+            addMarker(LatLng(responseData.lat.toDouble(), responseData.lon.toDouble()),responseData.id,responseData.message,jsonInString)
+
+            handleLocation(responseData.lat.toDouble(), responseData.lon.toDouble())
+
+            mProgressDialog.dismiss()
+
+        }
 
 
     }
@@ -117,6 +117,7 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     lateinit var mProgressDialog : ProgressDialog
     var lat : Double = 0.0;
     var lon :Double = 0.0
+    var type:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFirebselibClass = MfiebaselibsClass(this, this)
@@ -128,13 +129,13 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         getData()
 
         initLayout()
-//
-//        mProgressDialog = ProgressDialog(this)
-//
-//        mProgressDialog.setMessage("loading")
-//        mProgressDialog.setCancelable(false)
-//        mProgressDialog.show()
-//        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+
+        mProgressDialog = ProgressDialog(this)
+
+        mProgressDialog.setMessage("loading")
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.show()
+        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL+"/"+type, "data")
 
     }
     fun getData(){
@@ -142,7 +143,7 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
             lat=  intent.extras.getDouble("lat")
             lon =intent.extras.getDouble("lon")
         }
-
+        type = intent.extras.getInt("type")
     }
 
 

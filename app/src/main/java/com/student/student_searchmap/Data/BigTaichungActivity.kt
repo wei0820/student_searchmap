@@ -62,7 +62,7 @@ class BigTaichungActivity : AppCompatActivity() {
             var bundle = Bundle()
             bundle.putDouble("lat",lat)
             bundle.putDouble("lon",lon)
-            bundle.putInt("ltypeon",type[i])
+            bundle.putInt("type",type[i])
 
             intent.putExtras(bundle)
             intent.setClass(this,Map2Activity::class.java)

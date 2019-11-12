@@ -512,10 +512,10 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
-//                test(MySharedPrefernces.getIsToken(this)
-//                        ,latitude.toString()
-//                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
-//                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
+                addData(MySharedPrefernces.getIsToken(this)
+                        ,latitude.toString()
+                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
+                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
                 dialog.dismiss()
                 this.finish()
             })

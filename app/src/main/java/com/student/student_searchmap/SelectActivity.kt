@@ -1,21 +1,15 @@
 package com.student.student_searchmap
 
 import android.Manifest
-import android.content.Intent
-import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Button
-import com.student.student_searchmap.Data.PhoneAuthActivity
-
-import kotlinx.android.synthetic.main.activity_select.*
-import android.Manifest.permission
 import android.app.AlertDialog
-import android.support.v4.app.ActivityCompat
-import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.v4.content.ContextCompat
+import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import com.student.student_searchmap.Data.BigTaichungActivity
+import com.student.student_searchmap.Data.PhoneAuthActivity
 
 
 class SelectActivity : AppCompatActivity() {

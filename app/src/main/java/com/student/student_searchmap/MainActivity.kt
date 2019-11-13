@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
             firebase.child(responseData.date).removeValue();
             val mCal = Calendar.getInstance()
             val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
-            sendSMS(phone,s.toString(),responseData.id)
+//            sendSMS(phone,s.toString(),responseData.id)
         }
 
 

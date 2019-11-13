@@ -189,7 +189,7 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
 
     fun checkAddress(addrss: String) {
         var geoCoder = Geocoder(this, Locale.getDefault())
-        var addressLocation = geoCoder.getFromLocationName(addrss, 1)
+        var addressLocation = geoCoder.getFromLocationName("台北市中山區松江路85巷5號", 1)
         if (addressLocation.size != 0) {
              latitude = addressLocation[0].latitude
             longitude = addressLocation[0].longitude

@@ -133,7 +133,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         mProgressDialog.setMessage("loading")
         mProgressDialog.setCancelable(false)
         mProgressDialog.show()
-        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL+"ALL", "data")
+        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL+ResponseData.KEY_ALL, "data")
 
     }
 
@@ -239,6 +239,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         val bundle = Bundle()
         intent.setClass(this,MainActivity::class.java)
         bundle.putString("json",json)
+        bundle.putString("type",ResponseData.KEY_ALL)
+
         intent.putExtras(bundle)
         startActivity(intent)
 

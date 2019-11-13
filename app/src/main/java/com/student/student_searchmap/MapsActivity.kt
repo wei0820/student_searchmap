@@ -71,6 +71,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     }
 
     override fun getDatabaseData(p0: Any?) {
+        Log.d("Jack",p0.toString())
         if (p0!=null){
             val gson = Gson()
             val jsonInString = gson.toJson(p0)
@@ -132,7 +133,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         mProgressDialog.setMessage("loading")
         mProgressDialog.setCancelable(false)
         mProgressDialog.show()
-        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+        mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL+"ALL", "data")
 
     }
 

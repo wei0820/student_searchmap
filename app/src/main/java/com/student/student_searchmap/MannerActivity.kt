@@ -520,7 +520,7 @@ class MannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallba
         mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
         mHasMap.put(ResponseData.KEY_MESSAGE,message)
         mHasMap.put(ResponseData.KEY_PRICE,price)
-        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL,key,mHasMap)
+        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"ALL",key,mHasMap)
 
 
     }

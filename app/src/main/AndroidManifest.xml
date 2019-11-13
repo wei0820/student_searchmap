@@ -66,9 +66,6 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Maps2Activity">
-
-        </activity>
         <activity
             android:name=".SelectActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

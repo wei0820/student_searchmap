@@ -248,6 +248,7 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         val intent = Intent()
         val bundle = Bundle()
         intent.setClass(this, MainActivity::class.java)
+        bundle.putString("type",type.toString())
         bundle.putString("json",json)
         intent.putExtras(bundle)
         startActivity(intent)

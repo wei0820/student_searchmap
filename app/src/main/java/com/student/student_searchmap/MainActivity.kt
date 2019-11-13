@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
     }
     fun  getData(){
         val jsonString: String = intent.extras.getString("json")
+        val type: String = intent.extras.getString("type")
 
         val gson =Gson()
         val responseData = gson.fromJson(jsonString,ResponseData::class.java)
@@ -125,7 +126,7 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
             Toast.makeText(this,"預約成功",Toast.LENGTH_SHORT).show()
 
             val phone :String = responseData.phone.replaceFirst("0","+886")
-            val firebase = Firebase(ResponseData.KEY_URL)
+            val firebase = Firebase(ResponseData.KEY_URL+type)
             firebase.child(responseData.date).removeValue();
             val mCal = Calendar.getInstance()
             val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());

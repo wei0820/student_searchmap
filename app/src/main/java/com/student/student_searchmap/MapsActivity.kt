@@ -28,6 +28,7 @@ import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import com.student.student_searchmap.Data.ResponseData
 import com.google.gson.Gson
 import java.util.*
+import java.util.zip.DeflaterOutputStream
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraMoveCanceledListener
@@ -117,6 +118,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     var mFistBoolean : Boolean = true
     lateinit var mFirebselibClass: MfiebaselibsClass
     lateinit var mProgressDialog :ProgressDialog
+    var lat :Double =0.0;
+    var lon :Double =0.0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -195,6 +198,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
                 mFistBoolean = false
             }
+            lat = location.latitude
+            lon  = location.longitude
         }
 
 
@@ -240,6 +245,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         intent.setClass(this,MainActivity::class.java)
         bundle.putString("json",json)
         bundle.putString("type",ResponseData.KEY_ALL)
+        bundle.putDouble("lat",lat)
+        bundle.putDouble("lon",lon)
 
         intent.putExtras(bundle)
         startActivity(intent)

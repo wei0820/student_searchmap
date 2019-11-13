@@ -157,6 +157,23 @@ android:orientation="vertical">
                 ></TextView>
 
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <Button
+                android:id="@+id/lotbtn"
+                android:text="導航"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ></Button>
+
+        </LinearLayout>
     </LinearLayout>
 
     <Button

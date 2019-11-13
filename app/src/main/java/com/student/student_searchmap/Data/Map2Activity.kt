@@ -117,6 +117,8 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
     lateinit var mProgressDialog : ProgressDialog
     var lat : Double = 0.0;
     var lon :Double = 0.0
+    var latNow : Double = 0.0;
+    var lonNow :Double = 0.0
     var type:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -153,14 +155,14 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-//        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
-//
-//        try {
-//            // Request location updates
-//            locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
-//        } catch (ex: SecurityException) {
-//
-//        }
+        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
+
+        try {
+            // Request location updates
+            locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
+        } catch (ex: SecurityException) {
+
+        }
 
         /**
          * Manipulates the map once available.
@@ -199,12 +201,15 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         }
 
         override fun onLocationChanged(location: Location) {
-            if (mFistBoolean) {
-                latlon = location.latitude.toString() + "," + location.longitude.toString()
-                latlonNow = latlon
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
-                mFistBoolean = false
-            }
+//            if (mFistBoolean) {
+//                latlonNow = latlon
+//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 18.0f))
+//                mFistBoolean = false
+//            }
+            latlon = location.latitude.toString() + "," + location.longitude.toString()
+            Toast.makeText(this@Map2Activity,latlon, Toast.LENGTH_SHORT).show()
+            latNow = location.latitude
+            lonNow = location.longitude
         }
 
 
@@ -250,6 +255,8 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         intent.setClass(this, MainActivity::class.java)
         bundle.putString("type",type.toString())
         bundle.putString("json",json)
+        bundle.putDouble("lat",latNow)
+        bundle.putDouble("lon",lonNow)
         intent.putExtras(bundle)
         startActivity(intent)
 

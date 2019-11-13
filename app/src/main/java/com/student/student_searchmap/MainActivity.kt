@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
     lateinit var button: Button
     lateinit var mProgressDialog : ProgressDialog
     lateinit var mFirebselibClass: MfiebaselibsClass
+    lateinit var mLatBtn :Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +97,8 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
         time =findViewById(R.id.time)
         message = findViewById(R.id.message)
         button = findViewById(R.id.button)
+        mLatBtn = findViewById(R.id.lotbtn)
+
 
 //        mProgressDialog = ProgressDialog(this)
 //
@@ -108,6 +111,8 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
     fun  getData(){
         val jsonString: String = intent.extras.getString("json")
         val type: String = intent.extras.getString("type")
+        var lat :Double = intent.extras.getDouble("lat",0.0)
+        var lon :Double = intent.extras.getDouble("lon",0.0)
 
         val gson =Gson()
         val responseData = gson.fromJson(jsonString,ResponseData::class.java)
@@ -131,6 +136,10 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
             val mCal = Calendar.getInstance()
             val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
             sendSMS(phone,s.toString(),responseData.id)
+        }
+
+        mLatBtn.setOnClickListener {
+            googlemap(lat,lon,responseData.lat.toDouble(),responseData.lon.toDouble())
         }
 
 

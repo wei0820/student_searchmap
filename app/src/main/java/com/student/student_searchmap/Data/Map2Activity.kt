@@ -138,7 +138,6 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         mProgressDialog.setCancelable(false)
         mProgressDialog.show()
         mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL+ intent.extras.getInt("type"), "data")
-        Log.d("Jack",ResponseData.KEY_URL+type)
 
     }
     fun getData(){
@@ -146,6 +145,8 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
             lat=  intent.extras.getDouble("lat")
             lon =intent.extras.getDouble("lon")
         }
+        type = intent.extras.getInt("type")
+        Log.d("Jack",type.toString())
     }
 
 
@@ -207,7 +208,6 @@ class Map2Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
 //                mFistBoolean = false
 //            }
             latlon = location.latitude.toString() + "," + location.longitude.toString()
-            Toast.makeText(this@Map2Activity,latlon, Toast.LENGTH_SHORT).show()
             latNow = location.latitude
             lonNow = location.longitude
         }

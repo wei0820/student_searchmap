@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity(), MfirebaeCallback {
             decode(responseData.url)
 
         }
+        Log.d("Jack",ResponseData.KEY_URL+type)
         select.text = responseData.select
         phone.text = responseData.phone
         price.text =responseData.price
